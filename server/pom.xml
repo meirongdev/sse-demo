@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.1</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.meirongdev</groupId>
+    <artifactId>sse-vs-ws-server</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>sse-vs-ws-server</name>
+    <description>One process, two transports, one fan-out core. The only variable is the wire.</description>
+
+    <properties>
+        <java.version>25</java.version>
+    </properties>
+
+    <dependencies>
+        <!--
+          The stack under test, matched to the reference service: Spring Boot 4 on Tomcat,
+          Java 25, virtual threads, Spring MVC SseEmitter. Not a choice made here — a choice copied,
+          so the numbers transfer.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--
+          The second transport, in the SAME container and the same process. This is the whole point of
+          the harness: SSE and WebSocket share one Tomcat, one heap, one GC, one registry and one set of
+          frame bytes, so a difference in the measurement is a difference in the wire and not in the stack.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

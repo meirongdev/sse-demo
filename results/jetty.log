@@ -1,0 +1,6 @@
+=== Jetty 空载基线 ===
+  空载 heapLive=19.0MB rss=272MB
+RUN                      ESTAB      P99ms   HEAPLIVE  每连接
+p13-jetty-sse            20000     163.84      362MB      14KB
+p13-jetty-ws             20000    114.688      427MB      18KB
+JETTYDONE

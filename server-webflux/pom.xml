@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>4.1.1</version>
+        <relativePath/>
+    </parent>
+    <groupId>com.meirongdev</groupId>
+    <artifactId>sse-vs-ws-webflux</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>sse-vs-ws-webflux</name>
+    <description>The same frame, the same tick, on Netty instead of Tomcat.</description>
+
+    <properties><java.version>25</java.version></properties>
+
+    <dependencies>
+        <!--
+          The one variable this module exists to change: Netty in place of Tomcat, WebFlux in place of
+          Spring MVC. The frame, its size, the cadence and the room fan-out are copied from the servlet
+          module unchanged, so a difference in the measurement is a difference in the stack.
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+    </dependencies>
+    <build><plugins><plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+    </plugin></plugins></build>
+</project>

@@ -1,0 +1,49 @@
+{
+  "label": "p14-rust-sse",
+  "mode": "sse",
+  "stamp": "20260918-003028",
+  "limits": {
+    "cpus": 4,
+    "memory": "8g"
+  },
+  "config": {
+    "maxConnections": 8192,
+    "wsTextBuffer": 8192,
+    "wsBinaryBuffer": 8192,
+    "frameBytes": 265,
+    "tickIntervalMs": 1000,
+    "encode": "text"
+  },
+  "requestedConns": 20000,
+  "client": {
+    "established": 20000,
+    "liveAtEnd": 20000,
+    "connFailed": 0,
+    "connRejected": 0,
+    "droppedDuringHold": 0,
+    "framesPerSec": 19999.985918232138,
+    "mbitPerSec": 44.63996856949413,
+    "deliveryRatio": 0.9999992959116069,
+    "latencyMillis": {
+      "p50": 49.152,
+      "p99": 114.688,
+      "p999": 196.608,
+      "max": 196.608
+    },
+    "errors": {}
+  },
+  "server": {
+    "liveSessions": 20000,
+    "connectsAccepted": 20000,
+    "disconnects": 0,
+    "framesWritten": 1863959,
+    "slowConsumerClosed": 0,
+    "ticksPublished": 97,
+    "fanOutMaxMillis": 46.991,
+    "heapLiveMb": -1,
+    "rssMb": 679.7,
+    "platformThreads": 4,
+    "openFds": 19573,
+    "queueDepth": 256
+  }
+}

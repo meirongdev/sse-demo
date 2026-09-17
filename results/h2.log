@@ -1,0 +1,77 @@
+#### SSE/h2c @ 10000 streams
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 10000 conns each at 4000/s, mode=sse-h2, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-231603-p8-sse-h2-10000/summary.json
+{
+  "label": "p8-sse-h2-10000",
+  "mode": "sse-h2",
+  "requestedConns": 10000,
+  "established": 10000,
+  "live": 10000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 10000,
+  "mbitPerSec": 21.8,
+  "p99ms": 196.608,
+  "rssMb": 1438.8125,
+  "heapUsedMb": 882.5065765380859,
+  "serverLive": 10000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 35.789
+}
+#### SSE/h2c @ 20000 streams
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse-h2, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-231740-p8-sse-h2-20000/summary.json
+{
+  "label": "p8-sse-h2-20000",
+  "mode": "sse-h2",
+  "requestedConns": 20000,
+  "established": 20000,
+  "live": 20000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 20000,
+  "mbitPerSec": 43.5,
+  "p99ms": 327.68,
+  "rssMb": 2740.7890625,
+  "heapUsedMb": 2018.9069747924805,
+  "serverLive": 20000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 67.924
+}
+#### SSE/h2c @ 40000 streams
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 40000 conns each at 4000/s, mode=sse-h2, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-231918-p8-sse-h2-40000/summary.json
+{
+  "label": "p8-sse-h2-40000",
+  "mode": "sse-h2",
+  "requestedConns": 40000,
+  "established": 40000,
+  "live": 40000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 40000,
+  "mbitPerSec": 87,
+  "p99ms": 4194.304,
+  "rssMb": 5234.8515625,
+  "heapUsedMb": 4099.326110839844,
+  "serverLive": 40000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 145.241
+}
+
+RUN                   STREAMS      P99ms   HEAPLIVE    OPENFDS   CPUmed
+p8-sse-h2-10000         10000    196.608      357MB         19      33%
+p8-sse-h2-20000         20000     327.68     1449MB         19      58%
+p8-sse-h2-40000         40000   4194.304     3069MB         19     156%

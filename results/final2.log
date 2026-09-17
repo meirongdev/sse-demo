@@ -1,0 +1,38 @@
+########## 1/4  h2: spc=1@10k（干净延迟） + spc=3@20k（证伪成本模型，预测 2030MB） ##########
+RUN                      STREAMS      P99ms   HEAPLIVE    OPENFDS
+p11-h2-spc1-10k            10000     163.84     1688MB      10018
+p11-h2-spc3-20k            20000    786.432     2003MB       6685
+
+########## 2/4  WebFlux/Netty vs Tomcat ##########
+RUN                        ESTAB      P99ms   HEAPLIVE 每连接  FANOUTMAX
+p12-webflux-sse            20000    131.072      398MB      16KB       103ms
+p12-webflux-ws             20000     98.304      220MB       7KB        66ms
+
+########## 3/4  ENCODE=bytes 的 JFR 分配 profile ##########
+==> settling 20s before recording, so the ramp is not in the profile
+==> recording 60s of steady-state push
+==> /Users/matthew/projects/meirongdev/sse-demo/results/profile-sse-bytes-20000
+
+########## 4/4  分配热点 text vs bytes ##########
+
+--- ENCODE=text: 1691 个分配采样
+    29.0%  java.lang.StringLatin1.toLowerCase
+    11.9%  java.lang.String.encodeUTF8
+    10.1%  org.springframework.http.MediaType.parseMediaType
+     9.7%  java.util.concurrent.ForkJoinPool.execute
+     3.9%  org.springframework.util.StreamUtils.nonFlushing
+     3.8%  java.util.LinkedHashMap.newNode
+     3.7%  java.io.FilterOutputStream.<init>
+     2.9%  java.util.ArrayList.iterator
+
+--- ENCODE=bytes: 1669 个分配采样
+    32.4%  java.lang.StringLatin1.toLowerCase
+    11.7%  java.util.concurrent.ForkJoinPool.execute
+     9.1%  org.springframework.http.MediaType.parseMediaType
+     6.6%  org.springframework.util.StreamUtils.nonFlushing
+     5.3%  java.util.LinkedHashMap.newNode
+     3.2%  java.util.concurrent.ForkJoinPool.schedule
+     2.6%  java.util.Arrays.copyOfRange
+     2.5%  java.util.HashMap.resize
+
+ALLDONE

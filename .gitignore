@@ -1,0 +1,18 @@
+# Build output
+target/
+loadgen/loadgen
+
+# Go vendored deps — restore with `go mod vendor` in loadgen/
+loadgen/vendor/
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Editors
+.idea/
+*.iml
+.vscode/

@@ -1,0 +1,259 @@
+################ phase 1 — Tomcat's own defaults, and the wall they put in the way
+==> server: 4 vCPU / 8g, maxConnections=8192, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 12000 conns each at 2000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-221623-p1-default-sse/summary.json
+{
+  "label": "p1-default-sse",
+  "mode": "sse",
+  "requestedConns": 12000,
+  "established": 8192,
+  "live": 8192,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1.001,
+  "framesPerSec": 8197,
+  "mbitPerSec": 18.3,
+  "p99ms": 114.688,
+  "rssMb": 1809.8046875,
+  "heapUsedMb": 1397.2117767333984,
+  "serverLive": 8192,
+  "slowClosed": 0,
+  "fanOutMaxMs": 49.312
+}
+==> server: 4 vCPU / 8g, maxConnections=8192, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 12000 conns each at 2000/s, mode=ws, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-221906-p1-default-ws/summary.json
+{
+  "label": "p1-default-ws",
+  "mode": "ws",
+  "requestedConns": 12000,
+  "established": 8192,
+  "live": 8192,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 8192,
+  "mbitPerSec": 17.5,
+  "p99ms": 98.304,
+  "rssMb": 1295.3828125,
+  "heapUsedMb": 707.2726058959961,
+  "serverLive": 8192,
+  "slowClosed": 0,
+  "fanOutMaxMs": 45.261
+}
+################ phase 2 — tuned, ramped until it breaks
+---- sse @ 10000 across 1 client container(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 10000 conns each at 4000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-222148-p2-tuned-sse-10000/summary.json
+{
+  "label": "p2-tuned-sse-10000",
+  "mode": "sse",
+  "requestedConns": 10000,
+  "established": 10000,
+  "live": 10000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 10000,
+  "mbitPerSec": 22.3,
+  "p99ms": 163.84,
+  "rssMb": 2064.30078125,
+  "heapUsedMb": 1691.3597564697266,
+  "serverLive": 10000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 87.769
+}
+---- sse @ 20000 across 1 client container(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-222326-p2-tuned-sse-20000/summary.json
+{
+  "label": "p2-tuned-sse-20000",
+  "mode": "sse",
+  "requestedConns": 20000,
+  "established": 20000,
+  "live": 20000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1.001,
+  "framesPerSec": 20020,
+  "mbitPerSec": 44.7,
+  "p99ms": 327.68,
+  "rssMb": 3949.33203125,
+  "heapUsedMb": 3071.658348083496,
+  "serverLive": 20000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 88.961
+}
+---- sse @ 40000 across 2 client container(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 2 client container(s), 20000 conns each at 2000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-222508-p2-tuned-sse-40000/summary.json
+{
+  "label": "p2-tuned-sse-40000",
+  "mode": "sse",
+  "requestedConns": 40000,
+  "established": 40000,
+  "live": 40000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 0.998,
+  "framesPerSec": 39916,
+  "mbitPerSec": 89.1,
+  "p99ms": 6291.456,
+  "rssMb": 6071.44140625,
+  "heapUsedMb": 4627.590431213379,
+  "serverLive": 40000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 2574.797
+}
+---- sse stopped meeting the pass criteria at 40000; stopping this ladder
+---- ws @ 10000 across 1 client container(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 10000 conns each at 4000/s, mode=ws, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-222658-p2-tuned-ws-10000/summary.json
+{
+  "label": "p2-tuned-ws-10000",
+  "mode": "ws",
+  "requestedConns": 10000,
+  "established": 10000,
+  "live": 10000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 10000,
+  "mbitPerSec": 21.4,
+  "p99ms": 131.072,
+  "rssMb": 1149.359375,
+  "heapUsedMb": 753.6017227172852,
+  "serverLive": 10000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 38.259
+}
+---- ws @ 20000 across 1 client container(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=ws, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-222837-p2-tuned-ws-20000/summary.json
+{
+  "label": "p2-tuned-ws-20000",
+  "mode": "ws",
+  "requestedConns": 20000,
+  "established": 20000,
+  "live": 20000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 19999,
+  "mbitPerSec": 42.7,
+  "p99ms": 229.376,
+  "rssMb": 2096.54296875,
+  "heapUsedMb": 1388.3500747680664,
+  "serverLive": 20000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 190.369
+}
+---- ws @ 40000 across 2 client container(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 2 client container(s), 20000 conns each at 2000/s, mode=ws, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-223018-p2-tuned-ws-40000/summary.json
+{
+  "label": "p2-tuned-ws-40000",
+  "mode": "ws",
+  "requestedConns": 40000,
+  "established": 40000,
+  "live": 40000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 39991,
+  "mbitPerSec": 85.4,
+  "p99ms": 524.288,
+  "rssMb": 3497.703125,
+  "heapUsedMb": 2531.3340072631836,
+  "serverLive": 40000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 363.907
+}
+---- ws @ 60000 across 3 client container(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 3 client container(s), 20000 conns each at 1333/s, mode=ws, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-223205-p2-tuned-ws-60000/summary.json
+{
+  "label": "p2-tuned-ws-60000",
+  "mode": "ws",
+  "requestedConns": 60000,
+  "established": 60000,
+  "live": 60000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1.014,
+  "framesPerSec": 60867,
+  "mbitPerSec": 130,
+  "p99ms": 4194.304,
+  "rssMb": 4724.62109375,
+  "heapUsedMb": 3796.7553176879883,
+  "serverLive": 40000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 1748.774
+}
+---- ws stopped meeting the pass criteria at 60000; stopping this ladder
+################ phase 3 — what Tomcat's 8 KB WebSocket buffers cost, at one fixed count
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=ws, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-223414-p3-wsbuf-8192/summary.json
+{
+  "label": "p3-wsbuf-8192",
+  "mode": "ws",
+  "requestedConns": 20000,
+  "established": 20000,
+  "live": 20000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 20000,
+  "mbitPerSec": 42.7,
+  "p99ms": 131.072,
+  "rssMb": 2392.34375,
+  "heapUsedMb": 1816.7716064453125,
+  "serverLive": 20000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 67.332
+}
+################ results
+LABEL                    MODE     ASKED    ESTAB     LIVE     REJ    DROP  DELIVERY    P99ms    RSS_MB  KB/CONN
+------------------------------------------------------------------------------------------------------------------------
+p1-default-sse           sse      12000     8192     8192       0       0     1.001  114.688      1810    226.2
+p1-default-ws            ws       12000     8192     8192       0       0         1   98.304      1295    161.9
+p2-tuned-sse-10000       sse      10000    10000    10000       0       0         1   163.84      2064    211.4
+p2-tuned-sse-20000       sse      20000    20000    20000       0       0     1.001   327.68      3949    202.2
+p2-tuned-sse-40000       sse      40000    40000    40000       0       0     0.998 6291.456      6071    155.4
+p2-tuned-ws-10000        ws       10000    10000    10000       0       0         1  131.072      1149    117.7
+p2-tuned-ws-20000        ws       20000    20000    20000       0       0         1  229.376      2097    107.3
+p2-tuned-ws-40000        ws       40000    40000    40000       0       0         1  524.288      3498     89.5
+p2-tuned-ws-60000        ws       60000    60000    60000       0       0     1.014 4194.304      4725     80.6
+p3-wsbuf-8192            ws       20000    20000    20000       0       0         1  131.072      2392    122.5
+
+KB/CONN is whole-process RSS divided by live connections, so it carries the JVM's own ~290 MB
+baseline. Subtract that baseline before quoting a per-connection cost — at 10,000 connections
+it is 30 KB of the figure, and at 1,000 it is 290.

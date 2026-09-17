@@ -1,0 +1,20 @@
+[package]
+name = "sse-rust"
+version = "1.0.0"
+edition = "2021"
+
+# axum rather than a hand-rolled socket loop, deliberately: the JVM modules were measured on real
+# frameworks (Spring MVC, WebFlux), and a bare tokio TcpListener would be comparing a framework against
+# a socket. axum is what someone would actually deploy.
+[dependencies]
+axum = "0.7"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "time", "sync", "signal"] }
+tokio-stream = { version = "0.1", features = ["sync"] }
+futures = "0.3"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

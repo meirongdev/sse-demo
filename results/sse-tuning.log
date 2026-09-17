@@ -1,0 +1,77 @@
+#### a — baseline, Tomcat defaults (8 KB headers, 8 KB socket buffers)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-224713-p5a-sse-base/summary.json
+{
+  "label": "p5a-sse-base",
+  "mode": "sse",
+  "requestedConns": 20000,
+  "established": 20000,
+  "live": 20000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 20000,
+  "mbitPerSec": 44.6,
+  "p99ms": 229.376,
+  "rssMb": 3601.7890625,
+  "heapUsedMb": 2478.1059341430664,
+  "serverLive": 20000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 156.705
+}
+#### b — request header buffers 8 KB → 2 KB (SSE-specific: WS sheds these at upgrade)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-224852-p5b-sse-hdr2k/summary.json
+{
+  "label": "p5b-sse-hdr2k",
+  "mode": "sse",
+  "requestedConns": 20000,
+  "established": 20000,
+  "live": 20000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 20000,
+  "mbitPerSec": 44.6,
+  "p99ms": 262.144,
+  "rssMb": 3576.2734375,
+  "heapUsedMb": 2431.274383544922,
+  "serverLive": 20000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 310.02
+}
+#### c — header buffers AND the two NIO socket buffers → 2 KB (helps both transports)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-225031-p5c-sse-all2k/summary.json
+{
+  "label": "p5c-sse-all2k",
+  "mode": "sse",
+  "requestedConns": 20000,
+  "established": 20000,
+  "live": 20000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 19991,
+  "mbitPerSec": 44.6,
+  "p99ms": 163.84,
+  "rssMb": 3187.4140625,
+  "heapUsedMb": 2441.454788208008,
+  "serverLive": 20000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 69.964
+}
+
+CONFIG               heapLive    KB/conn     p99ms   CPUmed
+p5a-sse-base            2258MB     111.8KB  229.376ms      57%
+p5b-sse-hdr2k           2145MB       106KB  262.144ms      53%
+p5c-sse-all2k           1799MB      88.3KB   163.84ms      48%

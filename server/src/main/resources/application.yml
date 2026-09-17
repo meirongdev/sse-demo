@@ -1,0 +1,90 @@
+# Every value below is a variable of the experiment, and each one is overridable by environment variable so a
+# run can change it without a rebuild. The defaults are the reference service's own settings where it has one.
+
+spring:
+  application:
+    name: sse-vs-ws-server
+  threads:
+    virtual:
+      # One virtual thread per connection, blocking write loop. This does NOT raise the connection ceiling —
+      # it removes the reason to go reactive in order to reach it. maxConnections below is unaffected by it.
+      enabled: true
+  mvc:
+    async:
+      # A stream has no request timeout. Its lifetime is the connection's.
+      request-timeout: -1
+
+server:
+  port: 8080
+  tomcat:
+    # ⚠ THE FIRST WALL, and it is 8192 by default — below the 10,000/instance target the reference service is
+    # designed to. It is a counter on the NIO connector and is independent of the executor: "we are on virtual
+    # threads" is not an answer to it. The benchmark runs a `default` pass at 8192 to measure exactly that.
+    max-connections: ${MAX_CONNECTIONS:8192}
+    # The accept backlog. At a 2,000/s ramp the default of 100 overflows and the run reports connection
+    # refusals that are the RAMP's fault, not the ceiling's. Capped by the kernel's somaxconn either way.
+    accept-count: ${ACCEPT_COUNT:4096}
+    connection-timeout: 20s
+  # Header buffers on the Http11Processor, which an SSE connection never releases because its request never
+  # completes. A stream's request headers are a few hundred bytes; 8192 is sized for a cookie-laden browser POST.
+  max-http-request-header-size: ${MAX_HEADER_SIZE:8KB}
+  shutdown: graceful
+  # h2c — cleartext HTTP/2, no TLS, so the protocol is the only variable against the HTTP/1.1 runs.
+  http2:
+    enabled: ${HTTP2_ENABLED:false}
+
+management:
+  server:
+    # Its own port, so a stats poll never competes with the connections under test and stays reachable when
+    # the connection port is at its ceiling refusing everything.
+    port: 9090
+  endpoints:
+    web:
+      exposure:
+        include: health,bench,prometheus,metrics
+  endpoint:
+    health:
+      show-details: never
+
+demo:
+  # The tick. 1 Hz and 265 bytes are the reference service's figures (TD §5.6.1) — the frame is padded to
+  # exactly this many UTF-8 bytes so egress is a controlled variable rather than an accident of the JSON.
+  tick-interval-ms: ${TICK_INTERVAL_MS:1000}
+  frame-bytes: ${FRAME_BYTES:265}
+  tick-enabled: ${TICK_ENABLED:true}
+  # Platform threads that share one tick's enqueue work. 1 is the single-threaded loop the sweep measured,
+  # and the loop whose enqueue time overran the tick interval at both transports' ceilings.
+  fanout-threads: ${FANOUT_THREADS:1}
+  # Bounded, and full means close. Never buffer for an absent reader.
+  queue-depth: ${QUEUE_DEPTH:256}
+  heartbeat-interval: ${HEARTBEAT_INTERVAL:15s}
+  # An admission cap this side of the container's, so a run can be stopped at a known number instead of at
+  # whatever the kernel happened to refuse.
+  max-sessions: ${MAX_SESSIONS:1000000}
+  # `text` is what both stacks' idiomatic API does — one UTF-8 encoding per session per frame. `bytes` encodes
+  # once per tick instead (TD §5.6.1 lever 1). The delta between the two passes is what that lever is worth.
+  encode: ${ENCODE:text}
+  tomcat:
+    # The two NIO socket buffers Spring exposes no property for — see TomcatTuning. They are held for the life
+    # of the connection on BOTH transports, but only SSE also keeps the Http11Processor behind them alive.
+    app-read-buf-size: ${APP_READ_BUF:8192}
+    app-write-buf-size: ${APP_WRITE_BUF:8192}
+    # See TomcatTuning: 100 is Tomcat's default and would turn an h2 run back into 200 TCP connections.
+    max-concurrent-streams: ${MAX_STREAMS:100}
+  ws:
+    # ⚠ Tomcat allocates these EAGERLY PER SESSION: a ByteBuffer of binary-buffer-size and a CharBuffer of
+    # text-buffer-size — and a char is two bytes, so the text buffer costs double its setting. Tomcat's own
+    # default is 8192 for both, which is ~24 KB of heap per connection before a single frame is sent, on
+    # clients that never send anything. The `default` pass sets these back to 8192 to measure that.
+    text-buffer-size: ${WS_TEXT_BUFFER:1024}
+    binary-buffer-size: ${WS_BINARY_BUFFER:1024}
+
+logging:
+  level:
+    root: WARN
+    com.meirongdev.ssedemo: INFO
+    # ⚠ Tomcat logs a stack trace per broken pipe. At the ceiling, where connections are being refused and
+    # reset in bulk, that is the logging framework becoming the bottleneck and the run measuring log4j.
+    org.apache.catalina: ERROR
+    org.apache.tomcat: ERROR
+    org.springframework.web.socket: ERROR

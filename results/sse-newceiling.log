@@ -1,0 +1,50 @@
+#### SSE @ 30000, fully tuned, 2 client container(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 2 client container(s), 15000 conns each at 2000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-225243-p6-sse-tuned-30000/summary.json
+{
+  "label": "p6-sse-tuned-30000",
+  "mode": "sse",
+  "requestedConns": 30000,
+  "established": 30000,
+  "live": 30000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 30000,
+  "mbitPerSec": 67,
+  "p99ms": 262.144,
+  "rssMb": 4377.90625,
+  "heapUsedMb": 3510.253288269043,
+  "serverLive": 30000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 110.211
+}
+>>>> 30000 : true
+#### SSE @ 40000, fully tuned, 2 client container(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 2 client container(s), 20000 conns each at 2000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-225424-p6-sse-tuned-40000/summary.json
+{
+  "label": "p6-sse-tuned-40000",
+  "mode": "sse",
+  "requestedConns": 40000,
+  "established": 40000,
+  "live": 40000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1.002,
+  "framesPerSec": 40085,
+  "mbitPerSec": 89.5,
+  "p99ms": 2097.152,
+  "rssMb": 5874.38671875,
+  "heapUsedMb": 3959.706771850586,
+  "serverLive": 40000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 968.206
+}
+>>>> 40000 : false

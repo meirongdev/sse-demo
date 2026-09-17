@@ -1,0 +1,67 @@
+{
+  "label": "p6-sse-tuned-40000",
+  "mode": "sse",
+  "stamp": "20260917-225424",
+  "limits": {
+    "cpus": 4,
+    "memory": "8g"
+  },
+  "config": {
+    "maxConnections": 200000,
+    "wsTextBuffer": 8192,
+    "wsBinaryBuffer": 8192,
+    "frameBytes": 265,
+    "tickIntervalMs": 1000,
+    "encode": "text"
+  },
+  "requestedConns": 40000,
+  "client": {
+    "established": 40000,
+    "liveAtEnd": 40000,
+    "connFailed": 0,
+    "connRejected": 0,
+    "droppedDuringHold": 0,
+    "framesPerSec": 40085.36984842134,
+    "mbitPerSec": 89.47054550167644,
+    "deliveryRatio": 1.0021342462105336,
+    "latencyMillis": {
+      "p50": 229.376,
+      "p99": 2097.152,
+      "p999": 3145.728,
+      "max": 3145.728
+    },
+    "errors": {}
+  },
+  "server": {
+    "liveSessions": 40000,
+    "rooms": 1,
+    "connectsAccepted": 40000,
+    "connectsRejected": 0,
+    "disconnects": 0,
+    "framesWritten": 3258332,
+    "frameBytes": 909074628,
+    "heartbeats": 0,
+    "slowConsumerClosed": 0,
+    "writeFailed": 0,
+    "ticksPublished": 87,
+    "fanOutMeanMillis": 129.28206896551725,
+    "fanOutMaxMillis": 968.206,
+    "writeLatencyMillis": {
+      "p50": 229.376,
+      "p95": 1048.576,
+      "p99": 2097.152,
+      "p999": 3145.728,
+      "max": 3145.728
+    },
+    "heapUsedMb": 3959.706771850586,
+    "heapLiveMb": 3549.99072265625,
+    "heapCommittedMb": 5736.0,
+    "heapMaxMb": 5736.0,
+    "gcCount": 68,
+    "gcTimeMs": 1713,
+    "rssMb": 5874.38671875,
+    "platformThreads": 24,
+    "openFds": 40018,
+    "queueDepth": 256
+  }
+}

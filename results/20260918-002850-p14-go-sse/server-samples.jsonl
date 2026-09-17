@@ -1,0 +1,40 @@
+1789662531 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0,"framesWritten":0,"gcCount":0,"heapLiveMb":0.22406005859375,"heapUsedMb":0.78125,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":6.56640625,"slowConsumerClosed":0,"ticksPublished":0}
+
+1789662536 {"connectsAccepted":19120,"disconnects":0,"fanOutMaxMillis":76.442,"framesWritten":44734,"gcCount":8,"heapLiveMb":407.30980682373047,"heapUsedMb":413.4375,"liveSessions":19120,"openFds":19571,"platformThreads":38245,"queueDepth":256,"rssMb":625.8203125,"slowConsumerClosed":0,"ticksPublished":5}
+
+1789662541 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":98.707,"framesWritten":144734,"gcCount":8,"heapLiveMb":430.60875701904297,"heapUsedMb":437.1953125,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":657.72265625,"slowConsumerClosed":0,"ticksPublished":10}
+
+1789662546 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":98.707,"framesWritten":244734,"gcCount":8,"heapLiveMb":434.98099517822266,"heapUsedMb":441.5703125,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":661.9453125,"slowConsumerClosed":0,"ticksPublished":15}
+
+1789662551 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":98.707,"framesWritten":344734,"gcCount":8,"heapLiveMb":439.36297607421875,"heapUsedMb":445.984375,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":666.44140625,"slowConsumerClosed":0,"ticksPublished":20}
+
+1789662556 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":98.707,"framesWritten":444734,"gcCount":8,"heapLiveMb":443.729248046875,"heapUsedMb":450.375,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":670.86328125,"slowConsumerClosed":0,"ticksPublished":25}
+
+1789662561 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":98.707,"framesWritten":544734,"gcCount":8,"heapLiveMb":448.09378814697266,"heapUsedMb":454.75,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":675.25,"slowConsumerClosed":0,"ticksPublished":30}
+
+1789662566 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":98.707,"framesWritten":644734,"gcCount":8,"heapLiveMb":452.45862579345703,"heapUsedMb":459.171875,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":679.82421875,"slowConsumerClosed":0,"ticksPublished":35}
+
+1789662571 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":105.986,"framesWritten":744734,"gcCount":8,"heapLiveMb":456.8323287963867,"heapUsedMb":463.640625,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":684.3359375,"slowConsumerClosed":0,"ticksPublished":40}
+
+1789662576 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":105.986,"framesWritten":844734,"gcCount":8,"heapLiveMb":461.1952590942383,"heapUsedMb":468.0234375,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":688.76171875,"slowConsumerClosed":0,"ticksPublished":45}
+
+1789662581 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":105.986,"framesWritten":944734,"gcCount":8,"heapLiveMb":465.5697555541992,"heapUsedMb":472.4140625,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":692.875,"slowConsumerClosed":0,"ticksPublished":50}
+
+1789662586 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":105.986,"framesWritten":1044734,"gcCount":8,"heapLiveMb":469.9421615600586,"heapUsedMb":476.84375,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":697.5703125,"slowConsumerClosed":0,"ticksPublished":55}
+
+1789662591 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":105.986,"framesWritten":1144734,"gcCount":8,"heapLiveMb":474.3079605102539,"heapUsedMb":481.2734375,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":702.0078125,"slowConsumerClosed":0,"ticksPublished":60}
+
+1789662596 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":123.099,"framesWritten":1244734,"gcCount":8,"heapLiveMb":478.68347930908203,"heapUsedMb":485.6640625,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":706.45703125,"slowConsumerClosed":0,"ticksPublished":65}
+
+1789662601 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":123.099,"framesWritten":1364734,"gcCount":8,"heapLiveMb":486.16771697998047,"heapUsedMb":493.2734375,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":714.09375,"slowConsumerClosed":0,"ticksPublished":71}
+
+1789662607 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":123.099,"framesWritten":1464734,"gcCount":8,"heapLiveMb":490.53441619873047,"heapUsedMb":497.6640625,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":718.484375,"slowConsumerClosed":0,"ticksPublished":76}
+
+1789662612 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":123.099,"framesWritten":1564734,"gcCount":8,"heapLiveMb":494.8972396850586,"heapUsedMb":502.078125,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":722.93359375,"slowConsumerClosed":0,"ticksPublished":81}
+
+1789662617 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":123.099,"framesWritten":1664734,"gcCount":8,"heapLiveMb":499.2599868774414,"heapUsedMb":506.4609375,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":727.359375,"slowConsumerClosed":0,"ticksPublished":86}
+
+1789662622 {"connectsAccepted":20000,"disconnects":0,"fanOutMaxMillis":123.099,"framesWritten":1764734,"gcCount":8,"heapLiveMb":503.62279510498047,"heapUsedMb":510.859375,"liveSessions":20000,"openFds":20010,"platformThreads":40005,"queueDepth":256,"rssMb":731.7421875,"slowConsumerClosed":0,"ticksPublished":91}
+
+1789662627 {"connectsAccepted":20000,"disconnects":20000,"fanOutMaxMillis":123.099,"framesWritten":1864149,"gcCount":8,"heapLiveMb":512.6784591674805,"heapUsedMb":520.078125,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":735.4296875,"slowConsumerClosed":0,"ticksPublished":96}
+

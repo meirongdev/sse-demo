@@ -1,0 +1,59 @@
+[    5s] live=18383   est=18383   fail=0      rej=0      stall=0      drop=0      frames/s=7852     p50=229.4ms p99=458.8ms heap=278MB
+ramp complete in 6.8s: established=20000 failed=0 rejected=0
+[   10s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19441    p50=196.6ms p99=1835.0ms heap=268MB
+[   15s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20000    p50=163.8ms p99=1835.0ms heap=273MB
+[   20s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20002    p50=163.8ms p99=1835.0ms heap=277MB
+[   25s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19994    p50=131.1ms p99=1835.0ms heap=282MB
+[   30s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20000    p50=114.7ms p99=1572.9ms heap=287MB
+[   35s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19997    p50=114.7ms p99=1572.9ms heap=291MB
+[   40s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20003    p50=114.7ms p99=1572.9ms heap=296MB
+[   45s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20000    p50=114.7ms p99=1572.9ms heap=301MB
+[   50s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20008    p50=114.7ms p99=1572.9ms heap=305MB
+[   55s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19994    p50=114.7ms p99=1572.9ms heap=310MB
+[   60s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19995    p50=114.7ms p99=1572.9ms heap=314MB
+[   65s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20011    p50=114.7ms p99=1572.9ms heap=319MB
+[   70s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19989    p50=114.7ms p99=1572.9ms heap=324MB
+[   75s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20002    p50=114.7ms p99=1048.6ms heap=328MB
+[   80s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19998    p50=114.7ms p99=1048.6ms heap=333MB
+[   85s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20009    p50=114.7ms p99=1048.6ms heap=338MB
+[   90s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19993    p50=114.7ms p99=1048.6ms heap=342MB
+[   95s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20007    p50=114.7ms p99=655.4ms heap=347MB
+{
+  "bytesPerSec": 5439750.373784056,
+  "clientGoroutines": 43336,
+  "clientHeapMb": 348.6655960083008,
+  "connFailed": 0,
+  "connRejected": 0,
+  "connStalled": 0,
+  "deliveryRatio": 0.9999541128279513,
+  "dialed": 20000,
+  "droppedDuringHold": 0,
+  "droppedTotal": 0,
+  "errors": {},
+  "established": 20000,
+  "expectedFramesDuringHold": 1800082.6007,
+  "firstFrameSeen": 20000,
+  "framesDuringHold": 1800000,
+  "framesPerSec": 19999.082256559028,
+  "holdSeconds": 90.004130035,
+  "id": "1",
+  "latencyMillis": {
+    "max": 1835.008,
+    "p50": 114.688,
+    "p90": 229.376,
+    "p95": 327.68,
+    "p99": 655.36,
+    "p999": 1835.008
+  },
+  "liveAtEnd": 20000,
+  "liveAtHoldStart": 20000,
+  "malformed": 0,
+  "mbitPerSec": 43.51800299027245,
+  "mode": "sse-h2",
+  "rampRate": 4000,
+  "rampSeconds": 6.812251791,
+  "requestedConns": 20000,
+  "rooms": 1,
+  "streamsPerConn": 6,
+  "target": "192.168.155.2:8080"
+}

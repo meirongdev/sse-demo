@@ -1,0 +1,44 @@
+ramp complete in 1.2s: established=200 failed=0 rejected=0
+[    5s] live=200     est=200     fail=0      rej=0      stall=0      drop=0      frames/s=197      p50=7.2ms p99=14.3ms heap=1MB
+[   10s] live=200     est=200     fail=0      rej=0      stall=0      drop=0      frames/s=200      p50=5.1ms p99=14.3ms heap=1MB
+[   15s] live=200     est=200     fail=0      rej=0      stall=0      drop=0      frames/s=200      p50=5.1ms p99=14.3ms heap=1MB
+[   20s] live=200     est=200     fail=0      rej=0      stall=0      drop=0      frames/s=200      p50=4.1ms p99=14.3ms heap=1MB
+{
+  "bytesPerSec": 55793.11399992186,
+  "clientGoroutines": 202,
+  "clientHeapMb": 1.4634933471679688,
+  "connFailed": 0,
+  "connRejected": 0,
+  "connStalled": 0,
+  "deliveryRatio": 0.9998765949806785,
+  "dialed": 200,
+  "droppedDuringHold": 0,
+  "droppedTotal": 0,
+  "errors": {},
+  "established": 200,
+  "expectedFramesDuringHold": 4000.4936809999995,
+  "firstFrameSeen": 200,
+  "framesDuringHold": 4000,
+  "framesPerSec": 199.97531899613568,
+  "holdSeconds": 20.002468405,
+  "id": "1",
+  "latencyMillis": {
+    "max": 16.384,
+    "p50": 4.096,
+    "p90": 8.192,
+    "p95": 10.24,
+    "p99": 14.336,
+    "p999": 16.384
+  },
+  "liveAtEnd": 200,
+  "liveAtHoldStart": 200,
+  "malformed": 0,
+  "mbitPerSec": 0.44634491199937487,
+  "mode": "sse",
+  "rampRate": 200,
+  "rampSeconds": 1.202737013,
+  "requestedConns": 200,
+  "rooms": 1,
+  "streamsPerConn": 1,
+  "target": "192.168.155.2:8080"
+}

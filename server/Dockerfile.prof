@@ -1,0 +1,16 @@
+# The profiling image. Same jar, JDK instead of JRE.
+#
+# The benchmark image is a JRE, which is right for it and wrong here: jcmd is a JDK tool, and without it
+# there is no class histogram, no native-memory summary and no way to start a flight recording against a
+# running server. Kept as a SEPARATE TAG so a profiling build can never be what the benchmark measured.
+FROM eclipse-temurin:25-jdk
+
+WORKDIR /app
+COPY target/sse-vs-ws-server-1.0.0-SNAPSHOT.jar app.jar
+
+# NativeMemoryTracking=summary costs a few percent and is the only way to see where the memory that is
+# NOT heap goes — thread stacks, GC structures, the NIO buffers Tomcat allocates outside the heap.
+ENV JAVA_OPTS="-XX:MaxRAMPercentage=70 -XX:+ExitOnOutOfMemoryError -Djava.net.preferIPv4Stack=true -XX:NativeMemoryTracking=summary -XX:+FlightRecorder"
+
+EXPOSE 8080 9090
+ENTRYPOINT ["sh", "-c", "exec java $JAVA_OPTS -jar app.jar"]

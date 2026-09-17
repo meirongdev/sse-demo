@@ -1,0 +1,61 @@
+#### go 空载 RSS = 6.578125 MB
+#### rust 空载 RSS = 1.1 MB
+#### go SSE @ 20000
+==> server: 4 vCPU / 8g, maxConnections=8192, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-002850-p14-go-sse/summary.json
+{
+  "label": "p14-go-sse",
+  "mode": "sse",
+  "requestedConns": 20000,
+  "established": 20000,
+  "live": 20000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 20000,
+  "mbitPerSec": 44.6,
+  "p99ms": 114.688,
+  "rssMb": null,
+  "heapLiveMb": null,
+  "serverLive": null,
+  "slowClosed": null,
+  "fanOutMaxMs": null,
+  "gcCount": null
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1          10% of 100%
+  ssebench-server            38% of 400%
+#### rust SSE @ 20000
+==> server: 4 vCPU / 8g, maxConnections=8192, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-003028-p14-rust-sse/summary.json
+{
+  "label": "p14-rust-sse",
+  "mode": "sse",
+  "requestedConns": 20000,
+  "established": 20000,
+  "live": 20000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 20000,
+  "mbitPerSec": 44.6,
+  "p99ms": 114.688,
+  "rssMb": 680.0,
+  "heapLiveMb": -1,
+  "serverLive": 20000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 46.991,
+  "gcCount": null
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1           8% of 100%
+  ssebench-server            37% of 400%
+
+RUN                    ESTAB      P99ms         RSS 每连接RSS
+jq: error (at /Users/matthew/projects/meirongdev/sse-demo/bench/../results/20260918-002850-p14-go-sse/summary.json:36): null (null) number required

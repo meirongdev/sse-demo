@@ -1,0 +1,102 @@
+#### SSE @ 40,000 — fanout threads = 1
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 2 client container(s), 20000 conns each at 2000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-225705-p7-sse-40k-fanout1/summary.json
+{
+  "label": "p7-sse-40k-fanout1",
+  "mode": "sse",
+  "requestedConns": 40000,
+  "established": 40000,
+  "live": 40000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1.003,
+  "framesPerSec": 40114,
+  "mbitPerSec": 89.5,
+  "p99ms": 655.36,
+  "rssMb": 5847.4609375,
+  "heapUsedMb": 4235.423736572266,
+  "serverLive": 40000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 469.399
+}
+#### SSE @ 40,000 — fanout threads = 4
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 2 client container(s), 20000 conns each at 2000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-225850-p7-sse-40k-fanout4/summary.json
+{
+  "label": "p7-sse-40k-fanout4",
+  "mode": "sse",
+  "requestedConns": 40000,
+  "established": 40000,
+  "live": 40000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 0.999,
+  "framesPerSec": 39959,
+  "mbitPerSec": 89.2,
+  "p99ms": 458.752,
+  "rssMb": 5826.81640625,
+  "heapUsedMb": 4288.0441970825195,
+  "serverLive": 40000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 116.949
+}
+#### WS @ 60,000 — fanout threads = 1
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 3 client container(s), 20000 conns each at 1333/s, mode=ws, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-230034-p7-ws-60k-fanout1/summary.json
+{
+  "label": "p7-ws-60k-fanout1",
+  "mode": "ws",
+  "requestedConns": 60000,
+  "established": 60000,
+  "live": 60000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 59999,
+  "mbitPerSec": 128.2,
+  "p99ms": 393.216,
+  "rssMb": 3041.6328125,
+  "heapUsedMb": 2200.6079330444336,
+  "serverLive": 60000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 125.913
+}
+#### WS @ 60,000 — fanout threads = 4
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 3 client container(s), 20000 conns each at 1333/s, mode=ws, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-230224-p7-ws-60k-fanout4/summary.json
+{
+  "label": "p7-ws-60k-fanout4",
+  "mode": "ws",
+  "requestedConns": 60000,
+  "established": 60000,
+  "live": 60000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 59999,
+  "mbitPerSec": 128.2,
+  "p99ms": 393.216,
+  "rssMb": 2479.15234375,
+  "heapUsedMb": 2031.0844650268555,
+  "serverLive": 60000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 148.276
+}
+
+RUN                         ESTAB      P99ms FANOUTMAXms  HEAPLIVE   CPUmed
+p7-sse-40k-fanout1          40000     655.36         469     3535MB     130%
+p7-sse-40k-fanout4          40000    458.752         117     3540MB     117%
+p7-ws-60k-fanout1           60000    393.216         126     1621MB     100%
+p7-ws-60k-fanout4           60000    393.216         148     1464MB      98%

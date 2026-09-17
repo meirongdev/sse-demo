@@ -1,0 +1,10 @@
+#### SSE/h2c @ 20000 streams, 1 stream(s) per TCP connection
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse-h2, hold=90s
+#### SSE/h2c @ 20000 streams, 6 stream(s) per TCP connection
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.3, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse-h2, hold=90s
+
+RUN                STREAMS      P99ms   HEAPLIVE    OPENFDS    CPUmed

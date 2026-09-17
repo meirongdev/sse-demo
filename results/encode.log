@@ -1,0 +1,15 @@
+#### sse — encode=text
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at invalid IP, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse, hold=90s
+#### sse — encode=bytes
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=bytes
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse, hold=90s
+docker: Error response from daemon: Conflict. The container name "/ssebench-client-1" is already in use by container "5bdada75acf085c5bbd10b7a755dc549281b6976c1a7977f0b9773316242b844". You have to remove (or rename) that container to be able to reuse that name.
+
+Run 'docker run --help' for more information
+#### ws — encode=text
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=ws, hold=90s

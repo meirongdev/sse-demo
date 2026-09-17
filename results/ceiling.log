@@ -1,0 +1,66 @@
+############ rust
+#### rust @ 40000 across 2 client(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 2 client container(s), 20000 conns each at 2000/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-003713-p15-rust-40000/summary.json
+{
+  "label": "p15-rust-40000",
+  "mode": "sse",
+  "requestedConns": 40000,
+  "established": 40000,
+  "live": 40000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 39999,
+  "mbitPerSec": 89.3,
+  "p99ms": 196.608,
+  "rssMb": 1355.0,
+  "heapLiveMb": -1,
+  "serverLive": 40000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 36.516,
+  "gcCount": null
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1          27% of 100%
+  ssebench-client-2          28% of 100%
+  ssebench-server            63% of 400%
+>>>> rust 40000 : true
+#### rust @ 60000 across 3 client(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 3 client container(s), 20000 conns each at 1333/s, mode=sse, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-003858-p15-rust-60000/summary.json
+{
+  "label": "p15-rust-60000",
+  "mode": "sse",
+  "requestedConns": 60000,
+  "established": 60000,
+  "live": 60000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 59999,
+  "mbitPerSec": 133.9,
+  "p99ms": 229.376,
+  "rssMb": 2039.7,
+  "heapLiveMb": -1,
+  "serverLive": 60000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 75.734,
+  "gcCount": null
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1          20% of 100%
+  ssebench-client-2          21% of 100%
+  ssebench-client-3          20% of 100%
+  ssebench-server            81% of 400%
+>>>> rust 60000 : true
+#### rust @ 80000 across 4 client(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 4 client container(s), 20000 conns each at 1000/s, mode=sse, hold=90s

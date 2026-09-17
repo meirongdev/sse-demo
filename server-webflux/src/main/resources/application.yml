@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: sse-vs-ws-webflux
+  # ⚠ NOT enabled, and that is the point of this module. On the servlet side every connection parks a
+  # virtual thread on a blocking queue; Netty's event loops write to all of them from a handful of
+  # threads and no per-connection thread exists at all.
+  threads:
+    virtual:
+      enabled: false
+
+server:
+  port: 8080
+  shutdown: graceful
+
+management:
+  server:
+    port: 9090
+  endpoints:
+    web:
+      exposure:
+        include: health,bench,prometheus,metrics
+  endpoint:
+    health:
+      show-details: never
+
+demo:
+  tick-interval-ms: ${TICK_INTERVAL_MS:1000}
+  frame-bytes: ${FRAME_BYTES:265}
+  tick-enabled: ${TICK_ENABLED:true}
+  queue-depth: ${QUEUE_DEPTH:256}
+
+logging:
+  level:
+    root: WARN
+    com.meirongdev.ssefx: INFO
+    reactor.netty: ERROR
+    io.netty: ERROR

@@ -1,0 +1,23 @@
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=1024/1024, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.155.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=ws, hold=90s
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260917-223706-p4c-ws-buf-all/summary.json
+{
+  "label": "p4c-ws-buf-all",
+  "mode": "ws",
+  "requestedConns": 20000,
+  "established": 20000,
+  "live": 20000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 19999,
+  "mbitPerSec": 42.7,
+  "p99ms": 114.688,
+  "rssMb": 1489.96875,
+  "heapUsedMb": 936.5419082641602,
+  "serverLive": 20000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 47.095
+}
