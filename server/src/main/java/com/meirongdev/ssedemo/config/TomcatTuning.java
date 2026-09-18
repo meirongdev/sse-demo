@@ -53,10 +53,23 @@ public class TomcatTuning {
     @Bean
     public TomcatConnectorCustomizer socketBufferCustomizer(
             @Value("${demo.tomcat.app-read-buf-size:8192}") int readBufSize,
-            @Value("${demo.tomcat.app-write-buf-size:8192}") int writeBufSize) {
+            @Value("${demo.tomcat.app-write-buf-size:8192}") int writeBufSize,
+            @Value("${demo.tomcat.direct-buffer:false}") boolean directBuffer) {
         return (Connector connector) -> {
             connector.setProperty("socket.appReadBufSize", Integer.toString(readBufSize));
             connector.setProperty("socket.appWriteBufSize", Integer.toString(writeBufSize));
+            // ⚠ `socket.*` routes to SocketProperties, not to the endpoint — which is why this works the
+            // same way appReadBufSize does. Tomcat 11 removed AbstractEndpoint's own direct-buffer
+            // accessors, but SocketProperties.setDirectBuffer(boolean) is still there.
+            //
+            // This does NOT shrink the buffers, it relocates them: same bytes resident, off the Java
+            // heap. That targets the wall RESULTS §2 measured — heap OOM at ~52,000 while RSS was only
+            // at 74% of the cgroup — at the price of charging them to MaxDirectMemorySize instead.
+            connector.setProperty("socket.directBuffer", Boolean.toString(directBuffer));
+            // Printed because nothing else can confirm it: the value is not visible on /actuator/bench,
+            // and 缺陷 11 is exactly the class of bug where a knob is set and silently does nothing.
+            System.out.println("TomcatTuning: socket.directBuffer=" + directBuffer
+                    + " appReadBufSize=" + readBufSize + " appWriteBufSize=" + writeBufSize);
         };
     }
 }

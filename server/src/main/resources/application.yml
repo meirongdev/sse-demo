@@ -69,6 +69,13 @@ demo:
     # of the connection on BOTH transports, but only SSE also keeps the Http11Processor behind them alive.
     app-read-buf-size: ${APP_READ_BUF:8192}
     app-write-buf-size: ${APP_WRITE_BUF:8192}
+    # ⚠ Moves those two buffers OFF the Java heap (direct ByteBuffers). It does not make them smaller —
+    # the memory is still resident, so RSS does not drop; it stops counting against `heapMax`, which on
+    # this box is the wall that actually arrives first (RESULTS §2: OOM at ~52,000 with heap at 95% while
+    # RSS sat at 74% of the cgroup). The cost is that it moves to MaxDirectMemorySize, which defaults to
+    # the heap size, so heap + direct can together exceed the cgroup — and a cgroup kill has no Java
+    # stack trace. Tomcat's own default is false.
+    direct-buffer: ${DIRECT_BUFFER:false}
     # See TomcatTuning: 100 is Tomcat's default and would turn an h2 run back into 200 TCP connections.
     max-concurrent-streams: ${MAX_STREAMS:100}
   ws:
