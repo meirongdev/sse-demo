@@ -21,7 +21,13 @@ MODE="${MODE:-sse}"
 # and `FAIL` in the table below it.
 PASS='(.client.established >= (.requestedConns*0.99)) and (.client.deliveryRatio >= 0.99) and ((.client.droppedDuringHold // 0) <= (.requestedConns*0.01)) and (.client.latencyMillis.p99 < 1000)'
 
-for entry in "${@}"; do
+# ⚠ `${1+"$@"}`, not `"${@}"` and not `"${@:-}"`. Under `set -u` bash 3.2 (macOS) treats `"${@}"`
+# with no positional args as an unbound variable and the script dies before the summary table —
+# `make ceiling` always passes servers so it never fired there, but it also meant the table could
+# not be run on its own. `"${@:-}"` "fixes" that by iterating ONCE with an empty string, which
+# would enter this body with name="" and img="" and hand run.sh an empty SERVER_IMAGE. The `1+`
+# form expands to nothing when there is no $1, so zero servers means zero iterations.
+for entry in ${1+"$@"}; do
   name="${entry%%:*}"; img="${entry##*:}"
   echo "############ $name"
   for n in $LADDER; do
