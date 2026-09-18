@@ -165,7 +165,8 @@ RSS 几乎没动（连接走了 JVM 的 RSS 不掉），所以**错的是"服务
 ### 缺陷 8 · PASS/FAIL 分不出「没实现」和「扛不住」
 `ceiling.sh` 的判定是一个四条件的 jq 表达式，输出只有 `true|false`。
 WS 阶梯里 `rust ws @ 40000` 与 `go ws @ 40000` 打出 `false`，看着像"上限低于 4 万"，
-实际是**建连 0 / 40,000、压测端日志 `404 Not Found`、`rejected=20000`、`failed=0`**：
+实际是**建连 0 / 40,000、压测端日志 `404 Not Found`、`failed=0`、每个压测端 `rejected=20000`**
+（两个压测端，run 级合计 40,000）：
 `go-server` 与 `rust-server` 只注册了 `/sse/stream`，`/ws/stream` 只有 JVM 三台实现了。
 
 **容量型失败建连数逼近目标；功能型失败建连数是 0。** 两者在 `true|false` 这一列上完全同形。
