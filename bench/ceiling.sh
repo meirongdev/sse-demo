@@ -57,10 +57,22 @@ for entry in "${@}"; do
   done
 done
 
-if [ "$MODE" = "ws" ]; then PAT='*p15-*-ws-*'; else PAT='*p15-*'; fi
 printf '\n%-22s %9s %10s %11s %9s %s\n' RUN 建连 P99ms RSS 每连接 判定
-for d in $(ls -d "$HERE"/../results/$PAT 2>/dev/null | sort); do
+# The `p15-` prefix is what the ladder above labels its own runs with, so the glob answers "which
+# runs did this ladder produce". Transport is a second question and it is NOT asked of the name.
+#
+# ⚠ It used to be, through an asymmetric glob: MODE=ws matched '*p15-*-ws-*' and got its 6 runs,
+# but MODE=sse matched '*p15-*' — which also matches `p15-netty-ws-40000` — so the SSE table listed
+# 24 rows for a ladder that ran 18, with the whole WS ladder mixed in. One glob cannot express
+# "p15 but not -ws-". Every row's verdict was still its own, so nothing was ever misattributed;
+# the table simply claimed more than it ran, and every number in it gets read out loud.
+#
+# summary.json records the transport the run actually used, so that is what decides. Runs with no
+# summary.json (an aborted run leaves the directory behind — `20260918-004047-p15-rust-80000` is
+# one, docker-stats.log only) are skipped before the question is asked.
+for d in $(ls -d "$HERE"/../results/*p15-* 2>/dev/null | sort); do
   s=$d/summary.json; [ -f "$s" ] || continue
+  [ "$(jq -r '.mode // empty' "$s" 2>/dev/null)" = "$MODE" ] || continue
   # ⚠ The RSS column used to come from summary.json's `.server` — the field run.sh filled from whatever
   # sample it selected at the time, which for 16 of these runs is the one the teardown left behind
   # (rust @ 100,000 printed 229 MB / 2 KB here, the exact number 缺陷 6 was written about). verdict is
