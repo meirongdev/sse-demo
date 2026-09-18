@@ -1,0 +1,15 @@
+1789742852 {"liveSessions":0,"rooms":0,"connectsAccepted":0,"connectsRejected":0,"disconnects":0,"framesWritten":0,"frameBytes":0,"heartbeats":0,"slowConsumerClosed":0,"writeFailed":0,"ticksPublished":0,"fanOutMeanMillis":0.0,"fanOutMaxMillis":0.0,"writeLatencyMillis":{},"heapUsedMb":32.14043426513672,"heapLiveMb":18.490768432617188,"heapCommittedMb":80.0,"heapMaxMb":5736.0,"gcCount":11,"gcTimeMs":50,"rssMb":287.30859375,"platformThreads":20,"openFds":18,"queueDepth":256}
+1789742857 {"liveSessions":18394,"rooms":1,"connectsAccepted":18394,"connectsRejected":0,"disconnects":0,"framesWritten":37471,"frameBytes":10454409,"heartbeats":0,"slowConsumerClosed":0,"writeFailed":0,"ticksPublished":5,"fanOutMeanMillis":13.5154,"fanOutMaxMillis":31.266,"writeLatencyMillis":{"p50":57.344,"p95":98.304,"p99":114.688,"p999":163.84,"max":163.84},"heapUsedMb":2097.8422241210938,"heapLiveMb":1766.0,"heapCommittedMb":2380.0,"heapMaxMb":5736.0,"gcCount":42,"gcTimeMs":362,"rssMb":2530.97265625,"platformThreads":24,"openFds":18673,"queueDepth":256}
+1789742862 {"liveSessions":38194,"rooms":1,"connectsAccepted":38194,"connectsRejected":0,"disconnects":0,"framesWritten":172095,"frameBytes":48014505,"heartbeats":0,"slowConsumerClosed":0,"writeFailed":0,"ticksPublished":10,"fanOutMeanMillis":26.157,"fanOutMaxMillis":72.808,"writeLatencyMillis":{"p50":98.304,"p95":229.376,"p99":262.144,"p999":262.144,"max":262.144},"heapUsedMb":4338.923667907715,"heapLiveMb":4088.0,"heapCommittedMb":5616.0,"heapMaxMb":5736.0,"gcCount":56,"gcTimeMs":670,"rssMb":5128.18359375,"platformThreads":24,"openFds":38329,"queueDepth":256}
+1789742867 {}
+
+1789742874 {}
+
+1789742950 {}
+
+1789742958 {}
+
+1789742967 {}
+
+1789742975 {}
+
