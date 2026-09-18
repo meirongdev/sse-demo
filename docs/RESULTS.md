@@ -29,7 +29,13 @@
 
 ⚠ **第二次重建（2026-09-18T23:45，为了 §11d 的 `direct-buffer` knob）这次保留了旧二进制**：
 `ssebench-server:p16-p20-20260918` 加一份归档 jar，所以 p16–p20 仍可复现。
-**`p21` 之后的 run 属于第三个二进制**，而它的对照组是在同一个镜像上重跑的，不跨界比较。
+**`p21`/`p22` 属于第三个二进制**，而它的对照组是在同一个镜像上重跑的，不跨界比较。
+
+⚠ **第三次重建（2026-09-19T00:07）把 `DIRECT_BUFFER` 的默认值翻成了 `true`**（§11e）。
+旧二进制同样保留：`ssebench-server:p21-p22-20260919-0007` 加归档 jar。
+**从这次起，`summary.json` 的 `config` 块记录 `directBuffer` 与 `queueDepth`** ——
+一个会改变内存天花板的默认值如果不记录，run 就无法归属（METHODOLOGY 缺陷 11）。
+**`p23` 之后的 run 默认是堆外缓冲；在此之前的每一条都是堆内。**
 
 ⚠ **压测端也重建了**(`ssebench-loadgen`,01:23:43),而 `p99`、`deliveryRatio`、`established`
 全部出自压测端。所以跨这条线比 p99,比的不只是被测对象,**连量具都换了**。
@@ -724,3 +730,29 @@ C 把它给直接内存。两个一起开，堆墙算下来是 ~67,900，但 RSS
 仍然是诚实的（58,000 是 PASS，没有出现 A 那种僵尸），容量还多 6 个百分点，
 而且顺带把中等档位的 p99 砍掉一半以上。但**上限要按区间引用**，并且 RSS 余量只剩 14%，
 再往上就该换容器而不是继续调旋钮 —— 同样 8 GB 下 Jetty 每连接 RSS 66.5 KB、Netty 35.7 KB。
+
+### 11e. `DIRECT_BUFFER=true` 已设为默认（2026-09-19T00:07）
+
+依据是 §11d：−14.18 KB/连接的堆、上限 50,000 → 58,000（三次全过）、50,000 档 p99 786 → 328 ms。
+`application.yml` 与 `TomcatTuning` 的兜底值都改成 `true`，`run.sh` 的 `DIRECT_BUFFER`
+默认 `true` 并**写进 `summary.json` 的 `config` 块**。核实：不带环境变量启动打出
+`socket.directBuffer=true`，`DIRECT_BUFFER=false` 仍能覆盖，`p23-default-verify`
+的 `config` 读到 `"directBuffer": true`。
+
+⚠⚠ **这个默认值打破了 §1 的比较前提，必须说清楚。**
+`server-jetty` 从**同一份源码**编译，但它的 pom **显式排除 `TomcatTuning.java`**，
+理由写在那条注释里：*"THIS BUILD HAS NO CONTAINER TUNING，所以它对比的是 Tomcat 构建的
+未调优基线，两边都在各自默认值上。"* —— **Jetty 根本拿不到这个旋钮。**
+
+所以默认打开之后：
+
+| | 默认值现在包含 | §1 的前提 |
+|---|---|---|
+| Tomcat | 堆外 socket 缓冲（−14.18 KB/连接） | —— |
+| Jetty | 拿不到（编译期排除） | "两边都在各自默认值上" **不再成立** |
+| Netty | 无此概念（自己的 `application.yml`，不共享） | —— |
+
+**§1 的 Tomcat 列（87.6 / 37.9 KB）与 §2 的堆列全部是堆内缓冲测的。**
+要复现它们，必须显式 `DIRECT_BUFFER=false`。
+**要么在引用 §1 时带上这句，要么把 §1 整个重新基线化** —— 这是个取舍，本节不替你决定，
+只把它记下来：**Tomcat 的默认值现在比 Jetty 的默认值多带一项 Jetty 无法拥有的调优。**

@@ -1708,5 +1708,24 @@
     "serverCpuPeakPct": 327.62,
     "clientCpuPeakPct": 18.79,
     "maxConnections": 200000
+  },
+  {
+    "run": "20260919-000759-p23-default-verify",
+    "label": "p23-default-verify",
+    "mode": "sse",
+    "requested": 200,
+    "established": 200,
+    "liveAtEnd": 200,
+    "droppedInHold": 0,
+    "deliveryRatio": 0.9999179635805264,
+    "p99ms": 20.48,
+    "rssMb": 312.015625,
+    "heapLiveMb": 37.77085876464844,
+    "rssKbPerConn": 1597.5,
+    "fanOutMaxMs": 4.437,
+    "openFds": 218,
+    "serverCpuPeakPct": 69.68,
+    "clientCpuPeakPct": 0.83,
+    "maxConnections": 8192
   }
 ]

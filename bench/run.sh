@@ -41,6 +41,11 @@ FRAME_BYTES="${FRAME_BYTES:-265}"
 TICK_INTERVAL_MS="${TICK_INTERVAL_MS:-1000}"
 ENCODE="${ENCODE:-text}"
 QUEUE_DEPTH="${QUEUE_DEPTH:-256}"
+# ⚠ Tomcat's per-connection socket buffers off-heap. Default TRUE here because the app defaults it true
+# (RESULTS §11d), and recorded in summary.json below — a default that is not recorded is 缺陷 11, and
+# this one changes the memory ceiling, so a run that does not say which side it was on is unattributable.
+# Set false to reproduce §1/§2's Tomcat columns, which were all measured heap-buffered.
+DIRECT_BUFFER="${DIRECT_BUFFER:-true}"
 EXTRA_JAVA_OPTS="${EXTRA_JAVA_OPTS:-}"
 # Extra `-e KEY=VALUE` pairs for the server container, for knobs that are not part of the standard matrix.
 EXTRA_ENV="${EXTRA_ENV:-}"
@@ -94,6 +99,7 @@ docker run -d --name "$SERVER" --network "$NET" \
   -e TICK_INTERVAL_MS="$TICK_INTERVAL_MS" \
   -e ENCODE="$ENCODE" \
   -e QUEUE_DEPTH="$QUEUE_DEPTH" \
+  -e DIRECT_BUFFER="$DIRECT_BUFFER" \
   $EXTRA_ENV \
   -e JAVA_OPTS="-XX:MaxRAMPercentage=70 -XX:+ExitOnOutOfMemoryError -Djava.net.preferIPv4Stack=true $EXTRA_JAVA_OPTS" \
   "$SERVER_IMAGE" >/dev/null
@@ -165,6 +171,7 @@ jq -n \
   --argjson maxConnections "$MAX_CONNECTIONS" \
   --argjson wsTextBuffer "$WS_TEXT_BUFFER" --argjson wsBinaryBuffer "$WS_BINARY_BUFFER" \
   --argjson frameBytes "$FRAME_BYTES" --argjson tickMs "$TICK_INTERVAL_MS" --arg encode "$ENCODE" \
+  --argjson queueDepth "$QUEUE_DEPTH" --arg directBuffer "$DIRECT_BUFFER" \
   --argjson requested "$CONNS" \
   --slurpfile clients <(cat "$OUT"/client-*.json) \
   --slurpfile server <(cat "$OUT/server-final.json" 2>/dev/null || echo '{}') \
@@ -172,7 +179,8 @@ jq -n \
      label: $label, mode: $mode, stamp: $stamp,
      limits: { cpus: $cpus, memory: $mem },
      config: { maxConnections: $maxConnections, wsTextBuffer: $wsTextBuffer, wsBinaryBuffer: $wsBinaryBuffer,
-               frameBytes: $frameBytes, tickIntervalMs: $tickMs, encode: $encode },
+               frameBytes: $frameBytes, tickIntervalMs: $tickMs, encode: $encode,
+               queueDepth: $queueDepth, directBuffer: ($directBuffer == "true") },
      requestedConns: $requested,
      client: {
        established:  ([$clients[].established]  | add),

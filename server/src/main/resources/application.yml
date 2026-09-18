@@ -74,8 +74,16 @@ demo:
     # this box is the wall that actually arrives first (RESULTS §2: OOM at ~52,000 with heap at 95% while
     # RSS sat at 74% of the cgroup). The cost is that it moves to MaxDirectMemorySize, which defaults to
     # the heap size, so heap + direct can together exceed the cgroup — and a cgroup kill has no Java
-    # stack trace. Tomcat's own default is false.
-    direct-buffer: ${DIRECT_BUFFER:false}
+    # stack trace.
+    #
+    # ⚠⚠ DEFAULTED TO TRUE HERE, WHICH IS *NOT* TOMCAT'S OWN DEFAULT (false). Measured in RESULTS §11d:
+    # -14.18 KB/connection of heap, ceiling 50,000 -> 58,000, and p99 at 50,000 cut 786 -> 328 ms.
+    #
+    # ⚠⚠ IT ALSO BREAKS §1'S STATED TERMS. server-jetty compiles from this same source but EXCLUDES
+    # TomcatTuning (see its pom), so Jetty cannot have this knob at all. With this defaulted on, "both
+    # stacks at their defaults" is no longer what §1 compares — Tomcat's default now carries a tuning
+    # Jetty's default cannot. To reproduce §1's Tomcat column, run with DIRECT_BUFFER=false explicitly.
+    direct-buffer: ${DIRECT_BUFFER:true}
     # See TomcatTuning: 100 is Tomcat's default and would turn an h2 run back into 200 TCP connections.
     max-concurrent-streams: ${MAX_STREAMS:100}
   ws:

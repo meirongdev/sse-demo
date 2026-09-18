@@ -54,7 +54,7 @@ public class TomcatTuning {
     public TomcatConnectorCustomizer socketBufferCustomizer(
             @Value("${demo.tomcat.app-read-buf-size:8192}") int readBufSize,
             @Value("${demo.tomcat.app-write-buf-size:8192}") int writeBufSize,
-            @Value("${demo.tomcat.direct-buffer:false}") boolean directBuffer) {
+            @Value("${demo.tomcat.direct-buffer:true}") boolean directBuffer) {
         return (Connector connector) -> {
             connector.setProperty("socket.appReadBufSize", Integer.toString(readBufSize));
             connector.setProperty("socket.appWriteBufSize", Integer.toString(writeBufSize));
