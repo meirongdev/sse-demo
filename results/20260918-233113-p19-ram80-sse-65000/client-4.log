@@ -1,0 +1,100 @@
+[    5s] live=4980    est=4980    fail=0      rej=0      stall=0      drop=0      frames/s=2436     p50=49.2ms p99=131.1ms heap=26MB
+[   10s] live=9990    est=9990    fail=0      rej=0      stall=0      drop=0      frames/s=7445     p50=81.9ms p99=327.7ms heap=52MB
+[   15s] live=14600   est=14600   fail=0      rej=0      stall=0      drop=0      frames/s=9072     p50=114.7ms p99=1310.7ms heap=73MB
+ramp complete in 19.3s: established=14721 failed=1529 rejected=0
+[   20s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=191      p50=114.7ms p99=1310.7ms heap=82MB
+[   25s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   30s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   35s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   40s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   45s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   50s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   55s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   60s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   65s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   70s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   75s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   80s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   85s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   90s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[   95s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[  100s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+[  105s] live=0       est=14721   fail=1529   rej=0      stall=0      drop=14721  frames/s=0        p50=114.7ms p99=1310.7ms heap=82MB
+{
+  "bytesPerSec": 0,
+  "clientGoroutines": 2,
+  "clientHeapMb": 81.75452423095703,
+  "connFailed": 1529,
+  "connRejected": 0,
+  "connStalled": 0,
+  "dialed": 16250,
+  "droppedDuringHold": 0,
+  "droppedTotal": 14721,
+  "errors": {
+    "sse read status: read tcp 192.168.156.7:14350-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14364-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14378-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14392-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14402-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14416-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14418-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14434-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14442-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14448-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14458-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14466-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14472-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14490-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14510-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14512-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14520-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14524-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14530-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14534-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14536-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14548-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14552-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14568-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14580-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14606-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14610-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14616-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14632-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14650-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14658-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14678-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14688-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14692-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14704-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14712-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14720-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14738-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14748-\u003e192.168.156.2:8080: read: connection reset by peer": 1,
+    "sse read status: read tcp 192.168.156.7:14754-\u003e192.168.156.2:8080: read: connection reset by peer": 1
+  },
+  "established": 14721,
+  "firstFrameSeen": 13325,
+  "framesDuringHold": 0,
+  "framesPerSec": 0,
+  "holdSeconds": 90.004768906,
+  "id": "4",
+  "latencyMillis": {
+    "max": 5242.88,
+    "p50": 114.688,
+    "p90": 327.68,
+    "p95": 393.216,
+    "p99": 1310.72,
+    "p999": 5242.88
+  },
+  "liveAtEnd": 0,
+  "liveAtHoldStart": 0,
+  "malformed": 0,
+  "mbitPerSec": 0,
+  "mode": "sse",
+  "rampRate": 1000,
+  "rampSeconds": 19.290360778,
+  "requestedConns": 16250,
+  "rooms": 1,
+  "streamsPerConn": 1,
+  "target": "192.168.156.2:8080"
+}
