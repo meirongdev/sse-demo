@@ -24,8 +24,9 @@ The half in gate 2 is calibrated against the 64 series in `results/` (62 of whic
 not guessed: the artifact sits at 0.07× its own plateau, and the lowest legitimate full-population
 sample anywhere in the corpus sits at 0.72× (netty @ 100,000, which genuinely shed 28% of its RSS
 mid-hold while still holding 99,624 of 100,000 connections). Anything in (0.07, 0.72] separates
-them; 0.5 keeps 7× of margin over the artifact and 1.4× clear of the nearest real reading. A tighter band — the bare median, say —
-discards real samples and their cumulative counters along with them.
+them; 0.5 keeps 7× of margin over the artifact and 1.4× clear of the nearest real reading.
+A tighter band — the bare median, say — discards real samples and their cumulative counters
+along with them.
 
 run.sh writes server-final.json through this, and collect.py re-derives the server block through
 the same function. They used to hold two versions of the rule, which is how defect 5 in
