@@ -21,11 +21,10 @@
 
 **SSE + Jetty（17.4 KB）比 WebSocket + Tomcat（37.9 KB）还便宜一倍。**
 
-⚠ **本节及 §2 / §5 / §6 的「每连接」口径 = （`heapLive` − 该容器的固定开销）÷ 连接数。**
-固定开销原文没有记录，按本文各行反推是 **Tomcat ≈74.5 MB、Jetty ≈18.35 MB、Netty ≈17.64 MB**
-（每个常数都能同时复现该容器的 SSE 与 WS 两行，误差 <0.1 KB，所以不是拟合出来的巧合）。
-它不是空载进程的堆（那更小），是 heap–连接数 直线的截距，即 JVM + 容器在负载下的固定部分。
-**要复算任何一格，用 `ALL-RUNS.csv` 的 `heapLiveMb` 减掉它再除连接数。**
+⚠ **本节及 §2 / §5 的「每连接」口径 = （`heapLive` − 该栈空载基线）÷ 连接数**，
+基线取 `METHODOLOGY.md` §2 记的那一组：**Tomcat 74 MB、Jetty 19 MB、Netty 16.9 MB**。
+这组数能把本节两张表的六格逐一复现到 0.1 KB 以内，所以复算任何一格都不用猜：
+拿 `ALL-RUNS.csv` 的 `heapLiveMb` 减掉它，再除连接数。
 换容器改一行 `pom.xml`，换 transport 要改客户端契约。
 
 ### SSE 与 WS 的排序**随容器翻转**
@@ -33,7 +32,7 @@
 | 每连接 @ 20,000 | SSE | WebSocket | 关系 |
 |---|---|---|---|
 | Tomcat（各自全调优） | 87.6 KB | 37.9 KB | SSE 贵 **2.3×** |
-| **Jetty** | **17.4 KB** | 21.0 KB | **SSE 便宜 17%** |
+| **Jetty** | **17.4 KB** | 20.9 KB | **SSE 便宜 17%** |
 | WebFlux / Netty | 19.4 KB | 10.4 KB | SSE 贵 1.9× |
 
 **「SSE 比 WebSocket 开销大」不是 transport 的属性。** 在 Tomcat 和 Netty 上成立，在 Jetty 上不成立。
