@@ -1670,5 +1670,43 @@
     "serverCpuPeakPct": 302.28,
     "clientCpuPeakPct": 20.18,
     "maxConnections": 200000
+  },
+  {
+    "run": "20260918-235903-p22-direct-on-58000-r2",
+    "label": "p22-direct-on-58000-r2",
+    "mode": "sse",
+    "requested": 58000,
+    "established": 57999,
+    "liveAtEnd": 57999,
+    "droppedInHold": 0,
+    "deliveryRatio": 1.0041827964017076,
+    "p99ms": 786.432,
+    "rssMb": 7004.1875,
+    "heapLiveMb": 5422.01229095459,
+    "rssKbPerConn": 123.7,
+    "fanOutMaxMs": 589.234,
+    "openFds": 58017,
+    "serverCpuPeakPct": 304.15,
+    "clientCpuPeakPct": 18.5,
+    "maxConnections": 200000
+  },
+  {
+    "run": "20260919-000053-p22-direct-on-58000-r3",
+    "label": "p22-direct-on-58000-r3",
+    "mode": "sse",
+    "requested": 58000,
+    "established": 57999,
+    "liveAtEnd": 57999,
+    "droppedInHold": 0,
+    "deliveryRatio": 1.006444188279535,
+    "p99ms": 917.504,
+    "rssMb": 7031.14453125,
+    "heapLiveMb": 5416.446670532227,
+    "rssKbPerConn": 124.1,
+    "fanOutMaxMs": 566.72,
+    "openFds": 58017,
+    "serverCpuPeakPct": 327.62,
+    "clientCpuPeakPct": 18.79,
+    "maxConnections": 200000
   }
 ]
