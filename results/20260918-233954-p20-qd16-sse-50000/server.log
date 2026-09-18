@@ -1,0 +1,13 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+2026-09-18T15:39:54.870Z  INFO 1 --- [sse-vs-ws-server] [           main] com.meirongdev.ssedemo.DemoApplication   : Starting DemoApplication v1.0.0-SNAPSHOT using Java 25.0.4 with PID 1 (/app/app.jar started by root in /app)
+2026-09-18T15:39:54.871Z  INFO 1 --- [sse-vs-ws-server] [           main] com.meirongdev.ssedemo.DemoApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-09-18T15:39:55.670Z  INFO 1 --- [sse-vs-ws-server] [           main] com.meirongdev.ssedemo.DemoApplication   : Started DemoApplication in 1.0 seconds (process running for 1.25)
