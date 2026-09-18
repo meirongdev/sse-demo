@@ -16,3 +16,6 @@ __pycache__/
 .idea/
 *.iml
 .vscode/
+
+# Qwen Code scratch (session tmp, background shell logs)
+.qwen/tmp/

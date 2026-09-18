@@ -1,0 +1,225 @@
+############ jetty
+#### jetty @ 20000 across 1 client(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.156.2, waiting for health
+==> 1 client container(s), 20000 conns each at 4000/s, mode=sse, hold=90s
+/Users/matthew/projects/meirongdev/sse-demo/bench/run.sh: line 147: 16315 Terminated: 15          ( while true; do
+    printf '%s ' "$(date +%s)"; docker stats --no-stream --format '{{.Name}}={{.CPUPerc}}' $(docker ps --format '{{.Names}}' --filter name=ssebench- | grep -v probe | tr '\n' ' ') 2> /dev/null | tr '\n' ' '; echo; sleep 5;
+done ) > "$OUT/docker-stats.log" 2> /dev/null
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-064809-p15-jetty-20000/summary.json
+{
+  "label": "p15-jetty-20000",
+  "mode": "sse",
+  "requestedConns": 20000,
+  "established": 20000,
+  "live": 20000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 19998,
+  "mbitPerSec": 44.6,
+  "p99ms": 163.84,
+  "rssMb": 1535.97265625,
+  "heapLiveMb": 363.54766845703125,
+  "serverLive": 20000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 60.455,
+  "gcCount": 73
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1          11% of 100%
+  ssebench-server           304% of 400%
+>>>> jetty 20000 : true
+#### jetty @ 30000 across 2 client(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.156.2, waiting for health
+==> 2 client container(s), 15000 conns each at 2000/s, mode=sse, hold=90s
+/Users/matthew/projects/meirongdev/sse-demo/bench/run.sh: line 147: 16527 Terminated: 15          ( while true; do
+    printf '%s ' "$(date +%s)"; docker stats --no-stream --format '{{.Name}}={{.CPUPerc}}' $(docker ps --format '{{.Names}}' --filter name=ssebench- | grep -v probe | tr '\n' ' ') 2> /dev/null | tr '\n' ' '; echo; sleep 5;
+done ) > "$OUT/docker-stats.log" 2> /dev/null
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-064949-p15-jetty-30000/summary.json
+{
+  "label": "p15-jetty-30000",
+  "mode": "sse",
+  "requestedConns": 30000,
+  "established": 30000,
+  "live": 30000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 29998,
+  "mbitPerSec": 67,
+  "p99ms": 196.608,
+  "rssMb": 2177.546875,
+  "heapLiveMb": 531.1966400146484,
+  "serverLive": 30000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 78.003,
+  "gcCount": 70
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1          21% of 100%
+  ssebench-client-2          16% of 100%
+  ssebench-server           298% of 400%
+>>>> jetty 30000 : true
+#### jetty @ 40000 across 2 client(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.156.2, waiting for health
+==> 2 client container(s), 20000 conns each at 2000/s, mode=sse, hold=90s
+/Users/matthew/projects/meirongdev/sse-demo/bench/run.sh: line 147: 16771 Terminated: 15          ( while true; do
+    printf '%s ' "$(date +%s)"; docker stats --no-stream --format '{{.Name}}={{.CPUPerc}}' $(docker ps --format '{{.Names}}' --filter name=ssebench- | grep -v probe | tr '\n' ' ') 2> /dev/null | tr '\n' ' '; echo; sleep 5;
+done ) > "$OUT/docker-stats.log" 2> /dev/null
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-065131-p15-jetty-40000/summary.json
+{
+  "label": "p15-jetty-40000",
+  "mode": "sse",
+  "requestedConns": 40000,
+  "established": 40000,
+  "live": 40000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 39998,
+  "mbitPerSec": 89.3,
+  "p99ms": 262.144,
+  "rssMb": 2796.4453125,
+  "heapLiveMb": 692.422607421875,
+  "serverLive": 40000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 93.958,
+  "gcCount": 78
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1          17% of 100%
+  ssebench-client-2          19% of 100%
+  ssebench-server           288% of 400%
+>>>> jetty 40000 : true
+#### jetty @ 60000 across 3 client(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.156.2, waiting for health
+==> 3 client container(s), 20000 conns each at 1333/s, mode=sse, hold=90s
+/Users/matthew/projects/meirongdev/sse-demo/bench/run.sh: line 147: 17108 Terminated: 15          ( while true; do
+    printf '%s ' "$(date +%s)"; docker stats --no-stream --format '{{.Name}}={{.CPUPerc}}' $(docker ps --format '{{.Names}}' --filter name=ssebench- | grep -v probe | tr '\n' ' ') 2> /dev/null | tr '\n' ' '; echo; sleep 5;
+done ) > "$OUT/docker-stats.log" 2> /dev/null
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-065316-p15-jetty-60000/summary.json
+{
+  "label": "p15-jetty-60000",
+  "mode": "sse",
+  "requestedConns": 60000,
+  "established": 59927,
+  "live": 59927,
+  "failed": 73,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1.002,
+  "framesPerSec": 60071,
+  "mbitPerSec": 134.1,
+  "p99ms": 458.752,
+  "rssMb": 4057.45703125,
+  "heapLiveMb": 1024.965950012207,
+  "serverLive": 59927,
+  "slowClosed": 0,
+  "fanOutMaxMs": 132.39,
+  "gcCount": 80
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1          21% of 100%
+  ssebench-client-2          21% of 100%
+  ssebench-client-3          21% of 100%
+  ssebench-server           272% of 400%
+>>>> jetty 60000 : true
+#### jetty @ 80000 across 4 client(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.156.2, waiting for health
+==> 4 client container(s), 20000 conns each at 1000/s, mode=sse, hold=90s
+/Users/matthew/projects/meirongdev/sse-demo/bench/run.sh: line 147: 17407 Terminated: 15          ( while true; do
+    printf '%s ' "$(date +%s)"; docker stats --no-stream --format '{{.Name}}={{.CPUPerc}}' $(docker ps --format '{{.Names}}' --filter name=ssebench- | grep -v probe | tr '\n' ' ') 2> /dev/null | tr '\n' ' '; echo; sleep 5;
+done ) > "$OUT/docker-stats.log" 2> /dev/null
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-065509-p15-jetty-80000/summary.json
+{
+  "label": "p15-jetty-80000",
+  "mode": "sse",
+  "requestedConns": 80000,
+  "established": 79741,
+  "live": 79741,
+  "failed": 259,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 79714,
+  "mbitPerSec": 177.9,
+  "p99ms": 655.36,
+  "rssMb": 5275.609375,
+  "heapLiveMb": 1361.4682235717773,
+  "serverLive": 79741,
+  "slowClosed": 0,
+  "fanOutMaxMs": 131.078,
+  "gcCount": 91
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1          20% of 100%
+  ssebench-client-2          16% of 100%
+  ssebench-client-3          19% of 100%
+  ssebench-client-4          19% of 100%
+  ssebench-server           288% of 400%
+>>>> jetty 80000 : true
+#### jetty @ 100000 across 5 client(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.156.2, waiting for health
+==> 5 client container(s), 20000 conns each at 800/s, mode=sse, hold=90s
+/Users/matthew/projects/meirongdev/sse-demo/bench/run.sh: line 147: 17759 Terminated: 15          ( while true; do
+    printf '%s ' "$(date +%s)"; docker stats --no-stream --format '{{.Name}}={{.CPUPerc}}' $(docker ps --format '{{.Names}}' --filter name=ssebench- | grep -v probe | tr '\n' ' ') 2> /dev/null | tr '\n' ' '; echo; sleep 5;
+done ) > "$OUT/docker-stats.log" 2> /dev/null
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-065710-p15-jetty-100000/summary.json
+{
+  "label": "p15-jetty-100000",
+  "mode": "sse",
+  "requestedConns": 100000,
+  "established": 99858,
+  "live": 99858,
+  "failed": 142,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 0.998,
+  "framesPerSec": 99698,
+  "mbitPerSec": 222.5,
+  "p99ms": 1048.576,
+  "rssMb": 6720.90234375,
+  "heapLiveMb": 1696.2976989746094,
+  "serverLive": 99858,
+  "slowClosed": 0,
+  "fanOutMaxMs": 202.946,
+  "gcCount": 94
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1          22% of 100%
+  ssebench-client-2          21% of 100%
+  ssebench-client-3          21% of 100%
+  ssebench-client-4          22% of 100%
+  ssebench-client-5          21% of 100%
+  ssebench-server           400% of 400%
+>>>> jetty 100000 : false
+
+RUN                       建连      P99ms         RSS 每连接 判定
+p15-rust-40000             40000    196.608      1355MB      34KB  PASS
+p15-rust-60000             60000    229.376      2040MB      34KB  PASS
+p15-rust-80000             80000    229.376      2692MB      34KB  PASS
+p15-rust-100000           100000     327.68       229MB       2KB  PASS
+p15-go-40000               40000     163.84      1456MB      37KB  PASS
+p15-go-60000               60000    229.376      2218MB      37KB  PASS
+p15-go-80000               80000     327.68      2912MB      37KB  PASS
+p15-go-100000             100000    458.752      3661MB      37KB  PASS
+p15-netty-40000            40000    196.608      1658MB      42KB  PASS
+p15-netty-60000            60000     327.68      2400MB      40KB  PASS
+p15-netty-80000            80000    393.216      3440MB      44KB  PASS
+p15-netty-100000          100000    524.288      3993MB      40KB  PASS
+p15-jetty-20000            20000     163.84      1536MB      78KB  PASS
+p15-jetty-30000            30000    196.608      2178MB      74KB  PASS
+p15-jetty-40000            40000    262.144      2796MB      71KB  PASS
+p15-jetty-60000            59927    458.752      4057MB      69KB  PASS
+p15-jetty-80000            79741     655.36      5276MB      67KB  PASS
+p15-jetty-100000           99858   1048.576      6721MB      68KB  FAIL
+CEILINGDONE

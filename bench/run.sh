@@ -57,12 +57,12 @@ CLIENT_MEM="${CLIENT_MEM:-2g}"
 # `docker rm -f`-ing them. Two runs overlapping therefore delete each other's containers mid-flight,
 # and the symptom is silent: `docker wait` succeeds, `docker logs` then reports "No such container",
 # `set -e` exits, and the run leaves behind a results directory with no summary and no error in it.
-# mkdir is atomic, so this turns that into a message.
-LOCK=/tmp/ssebench.lock
-if ! mkdir "$LOCK" 2>/dev/null; then
-  echo "another bench run holds $LOCK — refusing to start (rmdir it if you are sure none is running)" >&2
-  exit 3
-fi
+#
+# The lock is held from here until the EXIT trap fires — see bench/benchlock.sh for why release is a
+# separate function and cannot live in cleanup().
+# shellcheck source=benchlock.sh
+. "$HERE/benchlock.sh"
+bench_lock_acquire || exit 3
 
 NET=ssebench
 SERVER=ssebench-server
@@ -71,12 +71,12 @@ OUT="$RESULTS/$STAMP-$LABEL"
 mkdir -p "$OUT"
 
 cleanup() {
-  rmdir "$LOCK" 2>/dev/null || true
   docker rm -f "$SERVER" >/dev/null 2>&1 || true
   docker rm -f ssebench-probe >/dev/null 2>&1 || true
   for i in $(seq 1 "$CLIENTS"); do docker rm -f "ssebench-client-$i" >/dev/null 2>&1 || true; done
 }
-trap cleanup EXIT
+# Release last, after the containers are gone, so the next run cannot start while these still exist.
+trap 'cleanup; bench_lock_release' EXIT
 
 docker network inspect "$NET" >/dev/null 2>&1 || docker network create "$NET" >/dev/null
 cleanup
@@ -146,16 +146,16 @@ done
 kill $STATSER 2>/dev/null || true
 docker logs ssebench-probe > "$OUT/server-samples.jsonl" 2>/dev/null || true
 
-# The last server sample before the clients disconnected is the reading that describes the hold.
-# ⚠ Position-independent, because the old `tail -n 3 | head -n 1` was not.
+# The sample that describes the hold, chosen by bench/final_sample.py — the same rule collect.py
+# reads the series with, so the two cannot drift (that drift was 缺陷 5).
 #
-# That heuristic assumed one line per sample. The Go server's stats endpoint uses
-# json.NewEncoder().Encode(), which appends a newline the JVM's actuator does not — so each sample
-# became two lines, the heuristic picked the blank one, and every server field in summary.json came
-# back null. A harness spanning four runtimes must not assume their JSON serializers agree.
-# This takes the LAST sample that actually carries load, whatever shape the file is in.
-grep -v '^[[:space:]]*$' "$OUT/server-samples.jsonl" 2>/dev/null | cut -d' ' -f2- \
-  | awk '/^\{/ && /"liveSessions":[1-9]/' | tail -n 1 > "$OUT/server-final.json" || true
+# "The last line whose liveSessions is non-zero" is not "still carrying the load". The server's own
+# counter lags the kernel by one sample at teardown: the sockets are gone, RSS has collapsed, and
+# it still reports the full population with `disconnects: 0`. Rust @ 100,000 published 228.8 MB out
+# of a 3389.1 MB plateau — 2 KB/connection instead of 35 — and a fan-out figure inflated by the
+# teardown itself. See METHODOLOGY.md 缺陷 6.
+[ -f "$OUT/server-samples.jsonl" ] && python3 "$HERE/final_sample.py" \
+  < "$OUT/server-samples.jsonl" > "$OUT/server-final.json" || true
 [ -s "$OUT/server-final.json" ] || echo '{}' > "$OUT/server-final.json"
 docker logs "$SERVER" > "$OUT/server.log" 2>&1 || true
 

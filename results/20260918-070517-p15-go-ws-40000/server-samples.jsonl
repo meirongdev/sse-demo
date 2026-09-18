@@ -1,0 +1,42 @@
+1789686317 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0,"framesWritten":0,"gcCount":0,"heapLiveMb":0.213226318359375,"heapUsedMb":0.765625,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":6.48046875,"slowConsumerClosed":0,"ticksPublished":0}
+
+1789686322 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.001,"framesWritten":0,"gcCount":25,"heapLiveMb":1.1417160034179688,"heapUsedMb":2.21875,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.50390625,"slowConsumerClosed":0,"ticksPublished":5}
+
+1789686327 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.001,"framesWritten":0,"gcCount":51,"heapLiveMb":1.6457366943359375,"heapUsedMb":2.53125,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.38671875,"slowConsumerClosed":0,"ticksPublished":10}
+
+1789686332 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.001,"framesWritten":0,"gcCount":52,"heapLiveMb":1.8697509765625,"heapUsedMb":2.7265625,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.51953125,"slowConsumerClosed":0,"ticksPublished":15}
+
+1789686337 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.004,"framesWritten":0,"gcCount":52,"heapLiveMb":1.89215087890625,"heapUsedMb":2.7734375,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.54296875,"slowConsumerClosed":0,"ticksPublished":20}
+
+1789686342 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.005,"framesWritten":0,"gcCount":52,"heapLiveMb":1.9129638671875,"heapUsedMb":2.78125,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.54296875,"slowConsumerClosed":0,"ticksPublished":25}
+
+1789686347 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.005,"framesWritten":0,"gcCount":52,"heapLiveMb":1.9337615966796875,"heapUsedMb":2.7890625,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.54296875,"slowConsumerClosed":0,"ticksPublished":30}
+
+1789686353 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.005,"framesWritten":0,"gcCount":52,"heapLiveMb":1.9451751708984375,"heapUsedMb":2.7890625,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.54296875,"slowConsumerClosed":0,"ticksPublished":35}
+
+1789686358 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.005,"framesWritten":0,"gcCount":52,"heapLiveMb":1.9566802978515625,"heapUsedMb":2.7890625,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.54296875,"slowConsumerClosed":0,"ticksPublished":40}
+
+1789686363 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.005,"framesWritten":0,"gcCount":52,"heapLiveMb":1.9681854248046875,"heapUsedMb":2.796875,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.546875,"slowConsumerClosed":0,"ticksPublished":45}
+
+1789686368 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.005,"framesWritten":0,"gcCount":52,"heapLiveMb":1.9796905517578125,"heapUsedMb":2.8046875,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.55078125,"slowConsumerClosed":0,"ticksPublished":50}
+
+1789686373 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.005,"framesWritten":0,"gcCount":52,"heapLiveMb":1.991180419921875,"heapUsedMb":2.8125,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.56640625,"slowConsumerClosed":0,"ticksPublished":55}
+
+1789686378 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.005,"framesWritten":0,"gcCount":52,"heapLiveMb":2.0026702880859375,"heapUsedMb":2.8203125,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":12.56640625,"slowConsumerClosed":0,"ticksPublished":60}
+
+1789686383 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.005,"framesWritten":0,"gcCount":52,"heapLiveMb":2.0141754150390625,"heapUsedMb":2.8515625,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":11.05859375,"slowConsumerClosed":0,"ticksPublished":65}
+
+1789686388 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.005,"framesWritten":0,"gcCount":52,"heapLiveMb":2.034912109375,"heapUsedMb":2.859375,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":11.26953125,"slowConsumerClosed":0,"ticksPublished":70}
+
+1789686393 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.005,"framesWritten":0,"gcCount":52,"heapLiveMb":2.04632568359375,"heapUsedMb":2.859375,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":11.26953125,"slowConsumerClosed":0,"ticksPublished":75}
+
+1789686398 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.019,"framesWritten":0,"gcCount":52,"heapLiveMb":2.057830810546875,"heapUsedMb":2.875,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":11.2734375,"slowConsumerClosed":0,"ticksPublished":80}
+
+1789686403 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.019,"framesWritten":0,"gcCount":52,"heapLiveMb":2.0693206787109375,"heapUsedMb":2.8828125,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":11.2734375,"slowConsumerClosed":0,"ticksPublished":85}
+
+1789686408 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.019,"framesWritten":0,"gcCount":52,"heapLiveMb":2.0808258056640625,"heapUsedMb":2.8828125,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":11.2734375,"slowConsumerClosed":0,"ticksPublished":90}
+
+1789686413 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.019,"framesWritten":0,"gcCount":52,"heapLiveMb":2.0923309326171875,"heapUsedMb":2.8828125,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":11.2734375,"slowConsumerClosed":0,"ticksPublished":95}
+
+1789686418 {"connectsAccepted":0,"disconnects":0,"fanOutMaxMillis":0.019,"framesWritten":0,"gcCount":52,"heapLiveMb":2.10382080078125,"heapUsedMb":2.890625,"liveSessions":0,"openFds":10,"platformThreads":5,"queueDepth":256,"rssMb":11.31640625,"slowConsumerClosed":0,"ticksPublished":100}
+

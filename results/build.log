@@ -1,0 +1,38 @@
+cd server && mvn -q -B -DskipTests package
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/Users/matthew/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+cd server-jetty && mvn -q -B -DskipTests package
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/Users/matthew/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+cd server-webflux && mvn -q -B -DskipTests package
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/Users/matthew/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+docker build -q -t ssebench-server  server
+sha256:09e0f87362b82f94212ac7ee66fadb86469b83709b6a50fd925f91a69dc5903c
+docker build -q -t ssebench-jetty   server-jetty
+sha256:ac0ca470b7558d0cc1dbf1b56924f4507a0c84cd3c769a474331d54e94b37b8a
+docker build -q -t ssebench-webflux server-webflux
+sha256:0b801b1d693dc0915460faf73d4049254cc2a8d4106206fb555aacefba77646f
+docker build -q -t ssebench-server-prof -f server/Dockerfile.prof server
+sha256:e40a4ca0475a27885b106ae860e79a0124fd26e347f34e6f53fb0e4eba578f79
+docker build -q -t ssebench-go go-server
+sha256:8a1d4b4b2801a0fde4a5e9e9f2e2c70760a0b0026aaa420325c9addb5bbe5b82
+docker build -q -t ssebench-rust rust-server
+sha256:80a81ab1647367a6890a8e222cc5932786fc5c60824b7f8cab190f3ef4f9c8d7
+docker build -q -t ssebench-loadgen loadgen
+Dockerfile:7
+--------------------
+   5 |     # The HTTP/1.1 paths still have no dependencies — x/net/http2 is only on the h2 path, and reimplementing
+   6 |     # HPACK and h2 flow control to keep the zero-dependency property would have been the wrong trade.
+   7 | >>> COPY vendor ./vendor
+   8 |     COPY *.go ./
+   9 |     RUN CGO_ENABLED=0 go build -mod=vendor -ldflags="-s -w" -o /loadgen .
+--------------------
+ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref d48ab314-b5c6-45f8-8496-078198d62304::8m0jsv2t5jtzo8n92jxcco2wk: "/vendor": not found
+make: *** [build-loadgen] Error 1

@@ -19,12 +19,10 @@ RECORD="${RECORD:-60}"
 # ⚠ The SAME lock run.sh takes, and for a different reason than container names: profiling pins a
 # server and a client on the same 10-vCPU machine a benchmark run would be using. The two do not share
 # container names, so nothing would visibly break — both measurements would simply be wrong, which is
-# worse.
-LOCK=/tmp/ssebench.lock
-if ! mkdir "$LOCK" 2>/dev/null; then
-  echo "another bench run holds $LOCK — refusing to start" >&2
-  exit 3
-fi
+# worse. Held until the EXIT trap fires; see bench/benchlock.sh.
+# shellcheck source=benchlock.sh
+. "$HERE/benchlock.sh"
+bench_lock_acquire || exit 3
 
 NET=ssebench
 SRV=sseprof-server
@@ -35,11 +33,10 @@ OUT="$ROOT/results/profile-${PROFILE_LABEL:-$MODE-$CONNS}"
 rm -rf "$OUT"; mkdir -p "$OUT"
 
 cleanup() {
-  rmdir "$LOCK" 2>/dev/null || true
   docker rm -f "$SRV" >/dev/null 2>&1 || true
   for i in $(seq 1 "$CLIENTS"); do docker rm -f "sseprof-client-$i" >/dev/null 2>&1 || true; done
 }
-trap cleanup EXIT
+trap 'cleanup; bench_lock_release' EXIT
 docker network inspect "$NET" >/dev/null 2>&1 || docker network create "$NET" >/dev/null
 cleanup
 

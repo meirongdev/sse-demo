@@ -1,0 +1,38 @@
+{
+  "label": "p15-go-ws-40000",
+  "mode": "ws",
+  "stamp": "20260918-070517",
+  "limits": {
+    "cpus": 4,
+    "memory": "8g"
+  },
+  "config": {
+    "maxConnections": 200000,
+    "wsTextBuffer": 8192,
+    "wsBinaryBuffer": 8192,
+    "frameBytes": 265,
+    "tickIntervalMs": 1000,
+    "encode": "text"
+  },
+  "requestedConns": 40000,
+  "client": {
+    "established": 0,
+    "liveAtEnd": 0,
+    "connFailed": 0,
+    "connRejected": 40000,
+    "droppedDuringHold": 0,
+    "framesPerSec": 0,
+    "mbitPerSec": 0,
+    "deliveryRatio": 0,
+    "latencyMillis": {
+      "p50": 0,
+      "p99": 0,
+      "p999": 0,
+      "max": 0
+    },
+    "errors": {
+      "ws status: HTTP/1.1 404 Not Found": 20000
+    }
+  },
+  "server": {}
+}

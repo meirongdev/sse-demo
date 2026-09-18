@@ -1,0 +1,63 @@
+[    5s] live=3992    est=3992    fail=0      rej=0      stall=0      drop=0      frames/s=1939     p50=41.0ms p99=81.9ms heap=19MB
+[   10s] live=7976    est=7976    fail=0      rej=0      stall=0      drop=0      frames/s=5938     p50=57.3ms p99=114.7ms heap=39MB
+[   15s] live=11976   est=11976   fail=0      rej=0      stall=0      drop=0      frames/s=9927     p50=81.9ms p99=163.8ms heap=65MB
+[   20s] live=15976   est=15976   fail=0      rej=0      stall=0      drop=0      frames/s=13922    p50=98.3ms p99=229.4ms heap=79MB
+[   25s] live=19984   est=19984   fail=0      rej=0      stall=0      drop=0      frames/s=17933    p50=114.7ms p99=262.1ms heap=104MB
+ramp complete in 25.2s: established=20000 failed=0 rejected=0
+[   30s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19977    p50=131.1ms p99=327.7ms heap=105MB
+[   35s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19993    p50=131.1ms p99=327.7ms heap=105MB
+[   40s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20003    p50=163.8ms p99=327.7ms heap=105MB
+[   45s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19994    p50=163.8ms p99=327.7ms heap=105MB
+[   50s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20009    p50=163.8ms p99=327.7ms heap=105MB
+[   55s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20013    p50=163.8ms p99=327.7ms heap=105MB
+[   60s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19981    p50=163.8ms p99=327.7ms heap=105MB
+[   65s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20027    p50=163.8ms p99=327.7ms heap=105MB
+[   70s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19984    p50=163.8ms p99=327.7ms heap=105MB
+[   75s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20016    p50=163.8ms p99=327.7ms heap=105MB
+[   80s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19987    p50=163.8ms p99=327.7ms heap=105MB
+[   85s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19992    p50=163.8ms p99=327.7ms heap=105MB
+[   90s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20000    p50=163.8ms p99=327.7ms heap=105MB
+[   95s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19993    p50=163.8ms p99=327.7ms heap=105MB
+[  100s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19994    p50=163.8ms p99=327.7ms heap=105MB
+[  105s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20018    p50=163.8ms p99=327.7ms heap=105MB
+[  110s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=19988    p50=163.8ms p99=327.7ms heap=105MB
+[  115s] live=20000   est=20000   fail=0      rej=0      stall=0      drop=0      frames/s=20000    p50=163.8ms p99=327.7ms heap=105MB
+{
+  "bytesPerSec": 5579542.472681637,
+  "clientGoroutines": 20002,
+  "clientHeapMb": 104.60335540771484,
+  "connFailed": 0,
+  "connRejected": 0,
+  "connStalled": 0,
+  "deliveryRatio": 0.9999180058569243,
+  "dialed": 20000,
+  "droppedDuringHold": 0,
+  "droppedTotal": 0,
+  "errors": {},
+  "established": 20000,
+  "expectedFramesDuringHold": 1800147.6015599999,
+  "firstFrameSeen": 20000,
+  "framesDuringHold": 1800000,
+  "framesPerSec": 19998.360117138483,
+  "holdSeconds": 90.007380078,
+  "id": "1",
+  "latencyMillis": {
+    "max": 327.68,
+    "p50": 163.84,
+    "p90": 262.144,
+    "p95": 327.68,
+    "p99": 327.68,
+    "p999": 327.68
+  },
+  "liveAtEnd": 20000,
+  "liveAtHoldStart": 20000,
+  "malformed": 0,
+  "mbitPerSec": 44.636339781453096,
+  "mode": "sse",
+  "rampRate": 800,
+  "rampSeconds": 25.211662573,
+  "requestedConns": 20000,
+  "rooms": 1,
+  "streamsPerConn": 1,
+  "target": "192.168.156.2:8080"
+}

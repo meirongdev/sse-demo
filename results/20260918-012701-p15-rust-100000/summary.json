@@ -1,0 +1,49 @@
+{
+  "label": "p15-rust-100000",
+  "mode": "sse",
+  "stamp": "20260918-012701",
+  "limits": {
+    "cpus": 4,
+    "memory": "8g"
+  },
+  "config": {
+    "maxConnections": 200000,
+    "wsTextBuffer": 8192,
+    "wsBinaryBuffer": 8192,
+    "frameBytes": 265,
+    "tickIntervalMs": 1000,
+    "encode": "text"
+  },
+  "requestedConns": 100000,
+  "client": {
+    "established": 100000,
+    "liveAtEnd": 100000,
+    "connFailed": 0,
+    "connRejected": 0,
+    "droppedDuringHold": 0,
+    "framesPerSec": 100159.81036748728,
+    "mbitPerSec": 223.5566967402316,
+    "deliveryRatio": 1.001598103674873,
+    "latencyMillis": {
+      "p50": 163.84,
+      "p99": 327.68,
+      "p999": 327.68,
+      "max": 327.68
+    },
+    "errors": {}
+  },
+  "server": {
+    "liveSessions": 100000,
+    "connectsAccepted": 100000,
+    "disconnects": 0,
+    "framesWritten": 10273381,
+    "slowConsumerClosed": 0,
+    "ticksPublished": 117,
+    "fanOutMaxMillis": 350.973,
+    "heapLiveMb": -1,
+    "rssMb": 228.8,
+    "platformThreads": 4,
+    "openFds": 13,
+    "queueDepth": 256
+  }
+}

@@ -7,9 +7,14 @@ samples and container logs, and the two files this produces carry everything the
 ⚠ The server snapshot is taken from the SAMPLE SERIES, not from summary.json's `server` field.
 Those two disagreed for the Go and Rust runs: run.sh used to pick the server's final sample by line
 position, and Go's stats endpoint emits a trailing newline the JVM's does not, so the field came back
-null. The series is authoritative; this reads the last sample that actually carried load.
+null. The series is authoritative. Which sample in it describes the hold is decided by
+final_sample.py — the same one run.sh writes server-final.json with, so the CSV and the per-run
+summary cannot disagree about it.
 """
 import csv, json, pathlib, re, sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from final_sample import final_sample
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 RESULTS = ROOT / "results"
@@ -18,19 +23,7 @@ def server_from_series(d):
     f = d / "server-samples.jsonl"
     if not f.exists():
         return {}
-    best = {}
-    for line in f.read_text(errors="replace").splitlines():
-        line = line.strip()
-        i = line.find("{")
-        if i < 0:
-            continue
-        try:
-            o = json.loads(line[i:])
-        except Exception:
-            continue
-        if o.get("liveSessions", 0) > 0:
-            best = o
-    return best
+    return final_sample(f.read_text(errors="replace")) or {}
 
 def peak_cpu(d, needle):
     f = d / "docker-stats.log"

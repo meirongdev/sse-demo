@@ -1,0 +1,41 @@
+{
+  "bytesPerSec": 5545427.715053947,
+  "clientGoroutines": 19964,
+  "clientHeapMb": 103.97438049316406,
+  "connFailed": 38,
+  "connRejected": 0,
+  "connStalled": 0,
+  "deliveryRatio": 0.9956960964878399,
+  "dialed": 20000,
+  "droppedDuringHold": 0,
+  "droppedTotal": 0,
+  "errors": {
+    "dial: dial tcp 192.168.156.2:8080: i/o timeout": 38
+  },
+  "established": 19962,
+  "expectedFramesDuringHold": 1796581.312621272,
+  "firstFrameSeen": 19962,
+  "framesDuringHold": 1788849,
+  "framesPerSec": 19876.08547809026,
+  "holdSeconds": 90.000065756,
+  "id": "1",
+  "latencyMillis": {
+    "max": 1048.576,
+    "p50": 327.68,
+    "p90": 655.36,
+    "p95": 786.432,
+    "p99": 786.432,
+    "p999": 1048.576
+  },
+  "liveAtEnd": 19962,
+  "liveAtHoldStart": 19962,
+  "malformed": 0,
+  "mbitPerSec": 44.363421720431575,
+  "mode": "sse",
+  "rampRate": 800,
+  "rampSeconds": 32.061737013,
+  "requestedConns": 20000,
+  "rooms": 1,
+  "streamsPerConn": 1,
+  "target": "192.168.156.2:8080"
+}

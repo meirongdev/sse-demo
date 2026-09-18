@@ -1,0 +1,51 @@
+{
+  "label": "p15-go-40000",
+  "mode": "sse",
+  "stamp": "20260918-012859",
+  "limits": {
+    "cpus": 4,
+    "memory": "8g"
+  },
+  "config": {
+    "maxConnections": 200000,
+    "wsTextBuffer": 8192,
+    "wsBinaryBuffer": 8192,
+    "frameBytes": 265,
+    "tickIntervalMs": 1000,
+    "encode": "text"
+  },
+  "requestedConns": 40000,
+  "client": {
+    "established": 40000,
+    "liveAtEnd": 40000,
+    "connFailed": 0,
+    "connRejected": 0,
+    "droppedDuringHold": 0,
+    "framesPerSec": 39997.31840874026,
+    "mbitPerSec": 89.27401468830826,
+    "deliveryRatio": 0.9999329602185065,
+    "latencyMillis": {
+      "p50": 98.304,
+      "p99": 163.84,
+      "p999": 196.608,
+      "max": 196.608
+    },
+    "errors": {}
+  },
+  "server": {
+    "connectsAccepted": 40000,
+    "disconnects": 0,
+    "fanOutMaxMillis": 165.622,
+    "framesWritten": 3636800,
+    "gcCount": 9,
+    "heapLiveMb": 1003.2700805664062,
+    "heapUsedMb": 1016.5703125,
+    "liveSessions": 40000,
+    "openFds": 40010,
+    "platformThreads": 80005,
+    "queueDepth": 256,
+    "rssMb": 1455.80859375,
+    "slowConsumerClosed": 0,
+    "ticksPublished": 96
+  }
+}

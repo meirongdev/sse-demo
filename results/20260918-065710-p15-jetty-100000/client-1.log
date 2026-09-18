@@ -1,0 +1,66 @@
+[    5s] live=3981    est=3981    fail=0      rej=0      stall=0      drop=0      frames/s=1632     p50=49.2ms p99=114.7ms heap=19MB
+[   10s] live=7783    est=7783    fail=0      rej=0      stall=0      drop=0      frames/s=5578     p50=81.9ms p99=229.4ms heap=38MB
+[   15s] live=11789   est=11789   fail=0      rej=0      stall=0      drop=0      frames/s=9449     p50=114.7ms p99=393.2ms heap=64MB
+[   20s] live=15678   est=15678   fail=0      rej=0      stall=0      drop=0      frames/s=13458    p50=163.8ms p99=655.4ms heap=77MB
+[   25s] live=19102   est=19102   fail=0      rej=0      stall=0      drop=0      frames/s=17200    p50=229.4ms p99=917.5ms heap=100MB
+[   30s] live=19956   est=19956   fail=38     rej=0      stall=0      drop=0      frames/s=19592    p50=262.1ms p99=917.5ms heap=104MB
+ramp complete in 32.1s: established=19962 failed=38 rejected=0
+[   35s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19958    p50=327.7ms p99=917.5ms heap=104MB
+[   40s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19989    p50=327.7ms p99=917.5ms heap=104MB
+[   45s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19971    p50=327.7ms p99=917.5ms heap=104MB
+[   50s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19942    p50=327.7ms p99=917.5ms heap=104MB
+[   55s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19973    p50=327.7ms p99=917.5ms heap=104MB
+[   60s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19934    p50=327.7ms p99=917.5ms heap=104MB
+[   65s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19996    p50=327.7ms p99=917.5ms heap=104MB
+[   70s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19926    p50=327.7ms p99=917.5ms heap=104MB
+[   75s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19998    p50=327.7ms p99=917.5ms heap=104MB
+[   80s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19962    p50=327.7ms p99=917.5ms heap=104MB
+[   85s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19926    p50=327.7ms p99=917.5ms heap=104MB
+[   90s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19971    p50=327.7ms p99=917.5ms heap=104MB
+[   95s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19993    p50=327.7ms p99=917.5ms heap=104MB
+[  100s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19909    p50=327.7ms p99=786.4ms heap=104MB
+[  105s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=20007    p50=327.7ms p99=786.4ms heap=104MB
+[  110s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19932    p50=327.7ms p99=786.4ms heap=104MB
+[  115s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19996    p50=393.2ms p99=786.4ms heap=104MB
+[  120s] live=19962   est=19962   fail=38     rej=0      stall=0      drop=0      frames/s=19930    p50=393.2ms p99=786.4ms heap=104MB
+{
+  "bytesPerSec": 5545427.715053947,
+  "clientGoroutines": 19964,
+  "clientHeapMb": 103.97438049316406,
+  "connFailed": 38,
+  "connRejected": 0,
+  "connStalled": 0,
+  "deliveryRatio": 0.9956960964878399,
+  "dialed": 20000,
+  "droppedDuringHold": 0,
+  "droppedTotal": 0,
+  "errors": {
+    "dial: dial tcp 192.168.156.2:8080: i/o timeout": 38
+  },
+  "established": 19962,
+  "expectedFramesDuringHold": 1796581.312621272,
+  "firstFrameSeen": 19962,
+  "framesDuringHold": 1788849,
+  "framesPerSec": 19876.08547809026,
+  "holdSeconds": 90.000065756,
+  "id": "1",
+  "latencyMillis": {
+    "max": 1048.576,
+    "p50": 327.68,
+    "p90": 655.36,
+    "p95": 786.432,
+    "p99": 786.432,
+    "p999": 1048.576
+  },
+  "liveAtEnd": 19962,
+  "liveAtHoldStart": 19962,
+  "malformed": 0,
+  "mbitPerSec": 44.363421720431575,
+  "mode": "sse",
+  "rampRate": 800,
+  "rampSeconds": 32.061737013,
+  "requestedConns": 20000,
+  "rooms": 1,
+  "streamsPerConn": 1,
+  "target": "192.168.156.2:8080"
+}

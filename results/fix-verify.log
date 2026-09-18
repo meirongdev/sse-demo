@@ -1,0 +1,94 @@
+=== netty ws @1000 (期望 PASS) ===
+############ netty
+#### netty ws @ 1000 across 1 client(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.156.2, waiting for health
+==> 1 client container(s), 1000 conns each at 4000/s, mode=ws, hold=90s
+/Users/matthew/projects/meirongdev/sse-demo/bench/run.sh: line 147: 24741 Terminated: 15          ( while true; do
+    printf '%s ' "$(date +%s)"; docker stats --no-stream --format '{{.Name}}={{.CPUPerc}}' $(docker ps --format '{{.Names}}' --filter name=ssebench- | grep -v probe | tr '\n' ' ') 2> /dev/null | tr '\n' ' '; echo; sleep 5;
+done ) > "$OUT/docker-stats.log" 2> /dev/null
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-084131-p15-netty-ws-1000/summary.json
+{
+  "label": "p15-netty-ws-1000",
+  "mode": "ws",
+  "requestedConns": 1000,
+  "established": 1000,
+  "live": 1000,
+  "failed": 0,
+  "rejected": 0,
+  "droppedInHold": 0,
+  "deliveryRatio": 1,
+  "framesPerSec": 1000,
+  "mbitPerSec": 2.1,
+  "p99ms": 24.576,
+  "rssMb": 293.00390625,
+  "heapLiveMb": 23.374267578125,
+  "serverLive": 1000,
+  "slowClosed": 0,
+  "fanOutMaxMs": 32.926,
+  "gcCount": 16
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1           1% of 100%
+  ssebench-server            96% of 400%
+>>>> netty 1000 : PASS 建连=1000/1000 rejected=0 droppedInHold=0 p99=25ms
+
+RUN                       建连      P99ms         RSS 每连接 判定
+p15-rust-ws-40000              0          0         0MB       0KB  NO-ENDPOINT
+p15-go-ws-40000                0          0         0MB       0KB  NO-ENDPOINT
+p15-netty-ws-40000         40000     163.84      1359MB      34KB  PASS
+p15-netty-ws-60000         60000    262.144      1562MB      26KB  PASS
+p15-netty-ws-80000         80000    393.216      2049MB      26KB  PASS
+p15-netty-ws-100000       100000    458.752      2433MB      24KB  PASS
+p15-netty-ws-1000           1000     28.672       290MB     297KB  PASS
+p15-rust-ws-1000               0          0         0MB       0KB  NO-ENDPOINT
+p15-netty-ws-1000           1000     24.576       293MB     300KB  PASS
+CEILINGDONE
+
+=== rust ws @1000 (期望 NO CONNECTIONS) ===
+############ rust
+#### rust ws @ 1000 across 1 client(s)
+==> server: 4 vCPU / 8g, maxConnections=200000, wsBuffers=8192/8192, frame=265B, tick=1000ms, encode=text
+==> server at 192.168.156.2, waiting for health
+==> 1 client container(s), 1000 conns each at 4000/s, mode=ws, hold=90s
+/Users/matthew/projects/meirongdev/sse-demo/bench/run.sh: line 147: 25239 Terminated: 15          ( while true; do
+    printf '%s ' "$(date +%s)"; docker stats --no-stream --format '{{.Name}}={{.CPUPerc}}' $(docker ps --format '{{.Names}}' --filter name=ssebench- | grep -v probe | tr '\n' ' ') 2> /dev/null | tr '\n' ' '; echo; sleep 5;
+done ) > "$OUT/docker-stats.log" 2> /dev/null
+==> /Users/matthew/projects/meirongdev/sse-demo/results/20260918-084304-p15-rust-ws-1000/summary.json
+{
+  "label": "p15-rust-ws-1000",
+  "mode": "ws",
+  "requestedConns": 1000,
+  "established": 0,
+  "live": 0,
+  "failed": 0,
+  "rejected": 1000,
+  "droppedInHold": 0,
+  "deliveryRatio": 0,
+  "framesPerSec": 0,
+  "mbitPerSec": 0,
+  "p99ms": 0,
+  "rssMb": null,
+  "heapLiveMb": null,
+  "serverLive": null,
+  "slowClosed": null,
+  "fanOutMaxMs": null,
+  "gcCount": null
+}
+--- peak container CPU (a client near its own limit INVALIDATES the run) ---
+  ssebench-client-1           0% of 100%
+  ssebench-server             5% of 400%
+>>>> rust 1000 : NO CONNECTIONS 建连 0/1000 rejected=1000 — 服务端没有 /ws/stream？这是功能缺失，不是容量结论
+
+RUN                       建连      P99ms         RSS 每连接 判定
+p15-rust-ws-40000              0          0         0MB       0KB  NO-ENDPOINT
+p15-go-ws-40000                0          0         0MB       0KB  NO-ENDPOINT
+p15-netty-ws-40000         40000     163.84      1359MB      34KB  PASS
+p15-netty-ws-60000         60000    262.144      1562MB      26KB  PASS
+p15-netty-ws-80000         80000    393.216      2049MB      26KB  PASS
+p15-netty-ws-100000       100000    458.752      2433MB      24KB  PASS
+p15-netty-ws-1000           1000     28.672       290MB     297KB  PASS
+p15-rust-ws-1000               0          0         0MB       0KB  NO-ENDPOINT
+p15-netty-ws-1000           1000     24.576       293MB     300KB  PASS
+p15-rust-ws-1000               0          0         0MB       0KB  NO-ENDPOINT
+CEILINGDONE

@@ -8,15 +8,26 @@ printf '%-24s %-5s %8s %8s %8s %7s %7s %9s %8s %9s %8s\n' \
 printf '%.0s-' {1..120}; echo
 
 for f in $(ls -d "$ROOT"/results/*/summary.json 2>/dev/null | sort); do
-  jq -r '
+  d="$(dirname "$f")"
+  # The server block comes from the sample series, through the same rule run.sh and collect.py use.
+  # summary.json's own `.server` field is whatever the extractor believed at the time and is
+  # deliberately not backfilled — for the old runs that includes teardown samples this rule now
+  # rejects (METHODOLOGY.md 缺陷 6), which is a 2 KB/connection row in this table.
+  if [ -f "$d/server-samples.jsonl" ]; then
+    srv="$(python3 "$ROOT/bench/final_sample.py" < "$d/server-samples.jsonl" 2>/dev/null || echo '{}')"
+  else
+    srv='{}'
+  fi
+  jq -r --argjson srv "$srv" '
     def n(x): if x == null then 0 else x end;
+    def S(k): if ($srv | has(k)) then $srv[k] else (.server | n(k)) end;
     [ .label, .mode, .requestedConns,
       n(.client.established), n(.client.liveAtEnd),
       n(.client.connRejected), n(.client.droppedDuringHold),
       (n(.client.deliveryRatio) * 1000 | round / 1000),
       n(.client.latencyMillis.p99),
-      (n(.server.rssMb) | round),
-      (if n(.client.liveAtEnd) > 0 then (n(.server.rssMb) * 1024 / .client.liveAtEnd * 10 | round / 10) else 0 end)
+      (n(S("rssMb")) | round),
+      (if n(.client.liveAtEnd) > 0 then (n(S("rssMb")) * 1024 / .client.liveAtEnd * 10 | round / 10) else 0 end)
     ] | @tsv' "$f" 2>/dev/null \
   | awk -F'\t' '{printf "%-24s %-5s %8s %8s %8s %7s %7s %9s %8s %9s %8s\n",$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11}'
 done
