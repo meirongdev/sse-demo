@@ -42,6 +42,9 @@ for f in $(ls -d "$ROOT"/results/*/summary.json 2>/dev/null | sort); do
 done
 
 echo
-echo "KB/CONN is whole-process RSS divided by live connections, so it carries the JVM's own ~290 MB"
-echo "baseline. Subtract that baseline before quoting a per-connection cost — at 10,000 connections"
-echo "it is 30 KB of the figure, and at 1,000 it is 290."
+echo "KB/CONN is whole-process RSS divided by live connections, so it is NOT a per-connection cost."
+echo "The amortised term is the COMMITTED HEAP, which G1 grows with load — 2268 MB at 10,000"
+echo "connections and 5736 MB from 40,000 up, not the ~290 MB idle baseline this note used to claim."
+echo "So there is no single constant to subtract: at 10,000 the committed heap is already 8x the idle"
+echo "figure. For a real per-connection cost use the SLOPE between two tiers, or heapLive minus the"
+echo "stack baseline in METHODOLOGY section 2."
