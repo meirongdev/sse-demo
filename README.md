@@ -7,7 +7,7 @@
 | 文档 | 内容 |
 |---|---|
 | [`docs/PLAN.md`](docs/PLAN.md) | **压测计划** —— 前置条件、执行顺序、参数、判定标准、移到真机前要改什么 |
-| [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md) | **方法与坑** —— 指标怎么选、harness 的 8 个缺陷（已全部修掉）、哪些数字不可信 |
+| [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md) | **方法与坑** —— 指标怎么选、harness 的 11 个缺陷、哪些数字不可信 |
 | [`docs/RESULTS.md`](docs/RESULTS.md) | **已测结果** —— 全部结论与原始数字 |
 | `results/ALL-RUNS.csv` | 64 次 run 的汇总（`python3 bench/collect.py` 重新生成） |
 
@@ -34,17 +34,19 @@ MODE=sse CONNS=40000 CLIENTS=2 RATE=4000 HOLD=120s \
 ## 三个最重要的结论
 
 **1. 容器的选择比 transport 的选择影响更大。**
-SSE 每连接：Tomcat 88 KB → **Jetty 17.6 KB**（5 倍）。
-**SSE + Jetty 比 WebSocket + Tomcat 还便宜一倍** —— 换容器改一行 pom，换 transport 要改客户端契约。
-⚠ 那个 17.6 KB 是**存活堆**；Jetty 的每连接 **RSS ≈64 KB，是四条路径里最贵的**（§9 结论 5）。
+SSE 每连接**存活堆**：Tomcat 87.6 KB → Jetty 17.4 KB，**5 倍**。
+换容器改一行 pom，换 transport 要改客户端契约。
+⚠ Tomcat 那一格已无法复核，所以这个 5.0× 悬着（RESULTS §1）。当前镜像上 Jetty 18.3 KB。
+⚠ **存活堆不是 RSS**：Jetty 每连接 **RSS ≈64 KB，是四条路径里最贵的**（RESULTS §9 结论 5）。
 按内存选型必须看 RSS，只看堆会把最费内存的运行时选成最省的。
 
 **2.「SSE 比 WebSocket 贵」不是 transport 的属性，它随容器翻转。**
-Tomcat 上 SSE 贵 2.3×，**Jetty 上 SSE 便宜 16%**，Netty 上 SSE 贵 1.9×。
+Netty 上 SSE 贵 **1.50×**，Jetty 上 SSE **便宜 7.8%**，Tomcat 上 SSE 贵 2.3×（旧二进制，无法复核）。
+⚠ 排序翻转这个定性结论稳定；**具体倍数随二进制变**（RESULTS §1）。
 
 **3. 换语言只值 7%。**
 每连接 RSS：Netty 36.0 / Go 37.1 / Rust 34.7 KB —— 三者相差 7% 以内。
-数量级差距只剩空载基线（263 MB vs 1.1 MB），而它是固定成本，10 万连接时只折合 2.6 KB/连接。
+数量级差距只剩空载基线（263 MB vs 1.1 MB），而它是固定成本，10 万连接时只折合 2.7 KB/连接。
 
 ---
 
@@ -63,9 +65,9 @@ Tomcat 上 SSE 贵 2.3×，**Jetty 上 SSE 便宜 16%**，Netty 上 SSE 贵 1.9�
 
 ## 必读的两条
 
-⚠ **严格串行。** `run.sh` 与 `profile.sh` 共用 `/tmp/ssebench.lock`。并发执行会互删容器并**静默**产出空结果。
-锁由 `bench/benchlock.sh` 持有到进程退出（曾经只守得住启动那几毫秒，见 METHODOLOGY 缺陷 7）；
+⚠ **严格串行。** `run.sh` 与 `profile.sh` 共用 `/tmp/ssebench.lock`（`bench/benchlock.sh` 持有到进程退出）。
 第二个 run 会看到 owner pid 并以 3 退出 —— 它**只拒绝，不排队**。
+并发执行会互删容器并**静默**产出空结果。
 
 ⚠ **压测端饱和的 run 作废。** 每次运行自动打印各容器 CPU 峰值；任一 client 接近自身上限即不作数 ——
 服务端读数此时看着仍很从容，只看服务端会误判成服务端到顶。本轮已有 3 个 p99 因此作废。
@@ -78,12 +80,10 @@ Tomcat 上 SSE 贵 2.3×，**Jetty 上 SSE 便宜 16%**，Netty 上 SSE 贵 1.9�
 但按参考项目 `CLAUDE.md` 自身标准（*"a benchmark is unmeasured until it runs on a real node,
 not a laptop"*），**不能作为 benchmark of record 引用**。
 
+**上限阶梯测到 10 万，没有测到顶**（详见 RESULTS §9）：rust / go / netty 各 4 档 40k–100k **全 PASS**，
+最紧的判据 p99 524 ms 距 1 s 还有一倍；Jetty 20k–80k PASS、100k FAIL（超判据 4.9%），
+按区间读成 **8–10 万**。WS 阶梯只有 Netty 能测（40k–100k 全 PASS，100k 档比同档 SSE 省 39% RSS）——
+**Go 与 Rust 没有实现 `/ws/stream`**，`MODE=ws` 打过去是 404、建连 0，那是功能缺失不是容量结论。
+**Tomcat 不在这条阶梯上**，四条曲线的真临界点都未测。
+
 未测：TLS、网关/LB、重连风暴、Jetty 自身的容器调优、Go/Rust 的生产特性（鉴权/tracing/优雅停机）。
-上限阶梯（`bench/ceiling.sh`）已跑完 rust / go / netty × 40k–100k，**12/12 全 PASS**——
-但 100k 是**这台机器测到的最高一档，不是上限**（服务端 CPU 最高 264%/400%，最紧的判据 p99 524 ms 距 1 s 还有一倍）。
-**Jetty 另跑六档：20k–80k 全 PASS，100k FAIL**（p99 1049 ms，超判据 4.9%，4 个 vCPU 打满 400%）——
-按 §6 的教训读成 **8–10 万区间**，不是 80,000 这个点值。
-**Tomcat 仍不在这条阶梯上**，四条曲线的真临界点都未测。
-WS 阶梯（`MODE=ws bench/ceiling.sh`）：**Netty 40k–100k 全 PASS**，100k 档 p99 459 ms、24.9 KB/连接，
-比同档 SSE 省 39% RSS、扇出耗时少一半。**Go 与 Rust 的服务端没有实现 `/ws/stream`**（只注册了
-`/sse/stream`），`MODE=ws` 打过去是 **404、建连 0** —— 那是功能缺失，不是容量结论（§9b、缺陷 8）。

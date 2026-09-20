@@ -17,8 +17,8 @@
 | Go 1.25+ | `loadgen` / `go-server` |
 | Rust 1.90+ | `rust-server` |
 
-**宿主机要求**：服务端容器固定 4 vCPU / 8 GB，压测端每 20,000 连接需 1 个容器（1 CPU / 2 GB）。
-所以 10 万连接需要约 `4 + 5 = 9` 核。**宿主机核数不足时，压测端会先于服务端饱和，该档数据作废。**
+**宿主机要求**：服务端容器固定 4 vCPU / 8 GB，压测端每 20,000 连接需 1 个容器（1 CPU / 2 GB），
+所以 10 万连接约需 `4 + 5 = 9` 核。**核数不足时压测端会先于服务端饱和，该档数据作废。**
 
 ```bash
 make build      # 打 jar、构建全部镜像
@@ -43,8 +43,8 @@ make smoke      # 200 连接 20 秒，先证明 harness 可信再谈结果
 | 10 | `bench/ceiling.sh <name>:<image> …` | **每用户一连接时的实测上限** | ~40 min |
 | — | `python3 bench/collect.py` | 把全部 run 汇总成 `results/ALL-RUNS.csv` | 秒级 |
 
-⚠ **严格串行。** `bench/run.sh` 和 `bench/profile.sh` 共用一把 `/tmp/ssebench.lock` 锁；
-并发执行会互删容器并静默产出空结果（见 `METHODOLOGY.md` 缺陷 1）。
+⚠ **严格串行。** `run.sh` 与 `profile.sh` 共用 `/tmp/ssebench.lock`；并发执行会互删容器
+并静默产出空结果（METHODOLOGY 缺陷 1 / 7）。
 
 ---
 
